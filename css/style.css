@@ -1,0 +1,462 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Default: 8 columns */
+  gap: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.input-group {
+  display: flex;
+  gap: 5px;
+  /* ระยะห่างระหว่างช่อง */
+}
+
+.w50 {
+  width: 50%;
+}
+
+.w25 {
+  width: 25%;
+}
+
+.w30 {
+  width: 30%;
+}
+
+.w40 {
+  width: 40%;
+}
+
+.w60 {
+  width: 60%;
+}
+
+.w70 {
+  width: 70%;
+}
+
+
+.w75 {
+  width: 75%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.txt-button {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.img-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.textbox-container {
+  position: relative;
+}
+
+.with-icon {
+  padding-right: 32px !important;
+  /* เผื่อที่ให้ไอคอนด้านขวา */
+}
+
+.img-icon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.search-icon:hover {
+  opacity: 1;
+}
+
+
+.form-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 1vw;
+  background-color: #ffffe0;
+  /* สีพื้น */
+  padding: 1rem;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+  /* ปรับความกว้างแต่ละคอลัมน์ */
+  min-width: 100px;
+}
+
+.form-column label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.form-column input {
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: right;
+  padding: 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+.form-column select {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: red;
+  text-align: center;
+}
+
+
+
+
+
+
+
+/* Reset และตั้งค่าเบื้องต้น */
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Kanit", sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Title bar */
+.title {
+  background-color: #acffa6;
+  height: 5vh;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Container pnlEntry */
+#pnlEntry.entry {
+  background-color: #e0f7fa;
+  height: 90vh;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+}
+
+.docno {
+  padding: 10px 20px;
+  max-height: 27vh;
+
+}
+
+.docno .row {
+  margin-top: 10px;
+}
+
+.docno .column {
+  flex-direction: unset;
+}
+
+.grid-list {
+  height: 55vh;
+}
+
+
+.search {
+  height: 5vh;
+  display: flex;
+}
+
+/* group-tab: แถวบนสุดของฟอร์ม */
+.group-tab {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+/* row ภายใน group-tab (แถวฟอร์ม input) */
+.group-tab .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 100%;
+  min-width: 280px;
+}
+
+/* label */
+.lblForm {
+  min-width: 120px;
+  height: 34px;
+  font-size: 16px;
+  color: #222;
+  font-weight: 500;
+}
+
+/* input */
+.txtForm,
+.ddlForm,
+.txtKeyForm,
+.txtDocForm {
+  padding: 6px 12px;
+  font-size: 16px;
+  border: 1.5px solid #bbb;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.txtKeyForm {
+  height: 34px;
+}
+
+.column .txtForm,
+.column .ddlForm {
+  box-sizing: border-box;
+  height: 34px;
+}
+
+
+
+.txtDocForm {
+  width: 110px;
+  height: 34px;
+}
+
+.txtKeyForm {
+  background-color: coral;
+  color: #fff;
+  font-weight: 600;
+  border-color: #e07b58;
+}
+
+.txtForm:focus,
+.txtKeyForm:focus,
+.txtDocForm:focus {
+  outline: none;
+  border-color: #26a69a;
+  box-shadow: 0 0 6px #26a69aaa;
+}
+
+#btnAdditem {
+  padding: 5px;
+  width: 25px;
+  border: solid 1px #000;
+  background-color: #acffa6;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+/* ปุ่มรูปปฏิทิน */
+.img-button {
+  height: 28px;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: filter 0.3s ease;
+}
+
+.img-button:hover {
+  filter: brightness(0.8);
+}
+
+/* Tab bar */
+.tab {
+  display: flex;
+  border-bottom: 2px solid #26a69a;
+  background-color: #e0f2f1;
+  border-radius: 6px 6px 0 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.tab::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari */
+}
+
+.tab button {
+  flex: 1 0 auto;
+  background-color: transparent;
+  border: none;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #00796b;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 6px 6px 0 0;
+}
+
+.tab button:hover {
+  background-color: #b2dfdb;
+}
+
+.tab button.active {
+  background-color: #26a69a;
+  color: white;
+  font-weight: 700;
+}
+
+/* Tab content */
+.tabcontent {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #26a69a;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+  overflow-y: auto;
+  color: #222;
+}
+
+.header {
+  /* height: 30vh; */
+}
+
+.detail {
+  /* height: 45vh; */
+}
+
+  #ddlSearch {
+    width: 200px;
+    height: 35px;
+  }
+
+  #cKey {
+    width: 300px;
+    height: 35px;
+  }
+/* Tablet: 4 columns */
+@media screen and (max-width: 1960px) {
+  .row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+/* Tablet: 4 columns */
+@media screen and (max-width: 1200px) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    height: 10vh;
+  }
+  
+  .docno {
+    max-height: none;
+  }
+
+  .docno .column {
+    flex-direction: column;
+  }
+
+  #ddlSearch {
+    width: 40%;
+  }
+
+  #cKey {
+    width: 60%;
+  }
+
+}
+
+
+
+/* Responsive: ปรับฟอร์มและแท็บ */
+@media (max-width: 700px) {
+
+    .row {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .group-tab .row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lblForm {
+    margin-bottom: 6px;
+  }
+
+  .txtForm,
+  .txtKeyForm,
+  .txtDocForm {
+    width: 100%;
+  }
+
+  .tab button {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}
+
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  width: 48%; /* ให้กว้างเท่ากันทั้ง 2 ช่อง */
+  min-width: 300px;
+}
+
+.lblForm {
+  width: 25%;
+  font-weight: bold;
+}
+
+.input-row {
+  width: 75%;
+  display: flex;
+  gap: 5px;
+}
+
+
+
+
+

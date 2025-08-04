@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="Scripts/load-layout.js"></script>
+  <script>
+    window.AppConfig = {
+      programName: "บันทึกรายรับรายจ่าย",
+      programID: "DC21CPQTB"
+    };
+
+    const headers = [
+      { title: "ลำดับ", width: "10%", align: "left", right: "E" },
+      { title: "รายการ", width: "30%", align: "left" },
+      { title: "ประเภท", width: "20%", align: "center" },
+      { title: "จำนวนเงิน", width: "10%", align: "right" },
+      { title: "วันที่", width: "10%", align: "center" },
+      { title: "เวลา", width: "10%", align: "center" }
+    ];
+
+    // ข้อมูล rows (ตัวอย่าง)
+    const data = [];
+
+    for (let i = 1; i <= 30; i++) {
+      data.push([
+        i,
+        i % 2 === 0 ? `ค่าใช้จ่าย ${i}` : `รายรับ ${i}`,
+        i % 2 === 0 ? "รายจ่าย" : "รายรับ",
+        (Math.floor(Math.random() * 10000) + 100).toLocaleString('th-TH'),
+        `${(i < 10 ? '0' : '') + i}/07/2025`,
+        `${(8 + (i % 12)).toString().padStart(2, '0')}.00` // ✅ แก้ตรงนี้
+      ]);
+    }
+
+
+
+    $(document).ready(function () {
+      $(document).on('click', '#btnRefresh', function () {
+
+      });
+
+      function getSelectedRowDataText(buttonElement, selectedIndexes = []) {
+        const $row = $(buttonElement).closest('tr');
+        const rowIndex = $row.index();
+        const $cells = $row.children();
+        const selectedTexts = selectedIndexes.map(colIndex => $cells.eq(colIndex).text().trim());
+        const text = selectedTexts.join(", ");
+        return `${text}`;
+      }
+
+      $(document).on('click', '.icon-edit', function () {
+        const text = getSelectedRowDataText(this, [1]);
+        console.log(text);
+      });
+
+      $(document).on('click', '#btnAddnew', function () {
+        $('#pnlListing').hide();
+        $('#pnlEntry').show();
+      });
+      $(document).on('click', '#btnCancel', function () {
+        $('#pnlListing').show();
+        $('#pnlEntry').hide();
+      });
+
+      $(document).on('click', '#btnSave', function () {
+        const gridData = [];
+
+        $('#pnlGridEntry tbody tr').each(function () {
+          const rowData = [];
+          $(this).find('td').each(function () {
+            const $input = $(this).find('input');
+            if ($input.length > 0) {
+              rowData.push($input.val().trim());
+            } else {
+              rowData.push($(this).text().trim());
+            }
+          });
+          gridData.push(rowData);
+        });
+
+        console.log(gridData); // ✅ ตรวจสอบ output
+        // หรือจะส่ง gridData ไป save API / WebMethod ก็ได้
+      });
+
+
+
+      $('#pnlEntry').hide();
+    });
+
+  </script>
+</head>
+
+<body>
+  <div id="pnlTitle" class="title">
+  </div>
+  <div id="pnlListing">
+    <div id="pnlDocno" class="docno">
+      <div class="row">
+        <div class="column">
+          <label class="lblForm w30">ปีการผลิต</label>
+          <input type="text" class="txtForm w50">
+        </div>
+        <div class="column">
+          <label class="lblForm w30">สาขา</label>
+          <select class="ddlForm w50"></select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <label class="lblForm w30">รหัสส่งเสริม</label>
+          <input type="text" class="txtForm w50">
+        </div>
+      </div>
+    </div>
+    <div id="pnlGridList" class="grid-list">
+      <div id="divSearch" class="d-flex align-items-center search">
+        <select id="ddlSearch" class="ddlForm" style="width: 200px;">
+          <option value="">คำค้นหา</option>
+        </select>
+        <input type="text" id="cKey" class="txtForm" style="width: 300px;" />
+      </div>
+
+    </div>
+  </div>
+  <div id="pnlEntry" class="entry">
+    <div class="entryHeader">
+      <div class="group-tab">
+        <div class="row">
+          <div class="column" style="flex-direction: unset;">
+            <label class="lblForm">รหัสส่งเสริม</label>
+          <div class="input-group">
+            <div class="textbox-container w40">
+              <input type="text" class="txtDocForm w100 with-icon">
+              <img src="../images/search2.png" class="img-icon" alt="search" />
+            </div>
+            <input type="text" class="txtKeyForm w60">
+          </div>
+          </div>
+           <div class="column" style="flex-direction: unset;">
+              <label class="lblForm">วันที่</label>
+
+          <div class="input-group">
+            <div class="textbox-container w100">
+              <input type="text" class="txtForm w40 with-icon">
+              <img src="../images/calendar2.png" class="img-icon" alt="Calendar" />
+            </div>
+          </div>
+           </div>
+        
+
+
+
+        </div>
+        <div class="tab">
+          <button class="tablinks1" onclick="openTabHeader(event, 'tab1')" id="defaultOpen1">Document Info</button>
+        </div>
+      </div>
+
+      <div id="tab1" class="tabcontent header">
+        <div class="row">
+          <div class="column">
+            <label class="lblForm">ปีการผลิต</label>
+            <input type="text" class="txtForm">
+          </div>
+          <div class="column">
+            <label class="lblForm">สาขา</label>
+            <select class="ddlForm"></select>
+          </div>
+          <div class="column">
+            <label class="lblForm">เสนอครั้งที่</label>
+            <input type="text" class="txtForm">
+          </div>
+          <div class="column">
+            <label class="lblForm">เกรด</label>
+            <select name="" id="" class="ddlForm"></select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <label class="lblForm">เลขที่สัญญา</label>
+            <div class="input-group">
+              <div class="textbox-container w100">
+                <input type="text" class="txtForm w100 with-icon">
+                <img src="../images/search2.png" class="img-icon" alt="search" />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <label class="lblForm">รหัสเกษตรกร</label>
+            <div class="input-group">
+              <div class="textbox-container w40">
+                <input type="text" class="txtForm w100 with-icon">
+                <img src="../images/search2.png" class="img-icon" alt="search" />
+              </div>
+              <input type="text" class="txtForm w60">
+            </div>
+          </div>
+          <div class="column">
+            <label class="lblForm">รหัสสินเชื่อ</label>
+            <div class="input-group">
+              <div class="textbox-container w40">
+                <input type="text" class="txtForm w100 with-icon">
+                <img src="../images/search2.png" class="img-icon" alt="search" />
+              </div>
+              <input type="text" class="txtForm w60">
+            </div>
+          </div>
+          <div class="column">
+            <label class="lblForm">โครงการพิเศษ</label>
+            <select class="ddlForm"></select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <label class="lblForm">ประเภทสินเชื่อ</label>
+            <select class="ddlForm"></select>
+          </div>
+          <div class="column">
+            <label class="lblForm">ประเภทส่งเสริม</label>
+            <select class="ddlForm"></select>
+          </div>
+          <div class="column" style="display: flex;justify-content: end;">
+            <div style="display: flex;justify-content: end;height: 50px;">
+              <button class="txt-button">ส่งอ้อยย้อนหลัง</button>
+              <button class="txt-button">ประวัติส่งเสริม</button>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="entryDetail">
+      <div class="group-tab">
+        <div class="tab">
+          <button class="tablinks2" onclick="openTabDetail(event, 'tab4')" id="defaultOpen2">Document Info</button>
+          <button class="tablinks2" onclick="openTabDetail(event, 'tab5')">ข้อมูลแปลง</button>
+          <button class="tablinks2" onclick="openTabDetail(event, 'tab6')">อัพโหลดเอกสาร</button>
+        </div>
+      </div>
+
+      <div id="tab4" class="tabcontent detail">
+        <div class="row">
+          <div class="column">
+            <label class="lblForm">วงเงินที่ชาวไร่ขอ</label>
+            <input type="text" class="txtForm">
+          </div>
+          <div class="column">
+            <label class="lblForm">วงเงินเดิมที่อนุมัติ</label>
+            <input type="text" class="txtForm">
+          </div>
+          <div class="column">
+            <label class="lblForm">วงเงินจาก GPS/อ้อย</label>
+            <input type="text" class="txtForm">
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-column">
+            <label class="lblForm"></label>
+            <label class="lblForm" style="text-align: right;">อ้อยใหม่</label>
+            <label class="lblForm" style="text-align: right;">อ้อยตอ</label>
+            <label class="lblForm" style="text-align: right;">อ้อยลาน</label>
+          </div>
+          <div class="form-column">
+            <label class="lblForm">สัญญา(ตัน)</label>
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+          </div>
+
+          <div class="form-column">
+            <label class="lblForm">ไร่</label>
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+            <div class="form-note">ต้นคืด</div>
+          </div>
+
+          <div class="form-column">
+            <label class="lblForm">ไร่ GPS</label>
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+          </div>
+
+          <div class="form-column">
+            <label class="lblForm">ต้น/ไร่</label>
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+            <div class="form-note">สัดส่วน 0</div>
+          </div>
+
+          <div class="form-column">
+            <label class="lblForm">ปริมาณอ้อย(ตัน)</label>
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+          </div>
+
+          <div class="form-column">
+            <select class="ddlForm">
+              <option></option>
+            </select>
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+          </div>
+
+          <div class="form-column">
+            <label class="lblForm">บาท</label>
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+            <input type="text" value="0.00" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <label class="lblForm">มูลค่าหลักทรัพย์</label>
+            <div class="input-group w100">
+              <div class="textbox-container w100">
+                <input type="text" class="txtForm w70">
+                <button class="txt-button">ผู้ค้ำประกัน</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="column">
+            <label class="lblForm">ภาระหนี้ค้าง</label>
+            <input type="text" class="txtForm">
+          </div>
+          <div class="column">
+            <label class="lblForm">วงเงินที่คาดว่าอนุมัติได้</label>
+            <input type="text" class="txtForm">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <label class="lblForm">สัดส่วนวงเงินที่ชาวไร่ขออนุมัติ</label>
+            <input type="text" class="txtForm">
+          </div>
+          <div class="column">
+            <label class="lblForm">สัดส่วนวงเงินที่คาดว่าจะอนุมัติได้</label>
+            <input type="text" class="txtForm">
+          </div>
+          <div class="column">
+            <label class="lblForm">วงเงินที่อนุมัติ</label>
+            <input type="text" class="txtForm">
+          </div>
+        </div>
+        <div class="w100">
+          <label for="" class="lblFrom">หมายเหตุ</label>
+          <textarea class="txtForm w100" rows="4"></textarea>
+        </div>
+      </div>
+      <div id="tab5" class="tabcontent detail">
+        <div id="pnlGridEntry"></div>
+        <button id="btnAdditem">+</button>
+      </div>
+      <div id="tab6" class="tabcontent detail"></div>
+
+    </div>
+  </div>
+  <script>
+    createTable("pnlGridList", headers, data, ["edit", "delete"]);
+    createTableEntry("pnlGridEntry", headers, data, ["delete"], "30vh");
+
+    function openTabHeader(evt, tabName) {
+      var i, tabcontent, tablinks;
+
+      tabcontent = document.getElementsByClassName("tabcontent header");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      tablinks = document.getElementsByClassName("tablinks1");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.classList.add("active");
+    }
+    function openTabDetail(evt, tabName) {
+      var i, tabcontent, tablinks;
+
+      tabcontent = document.getElementsByClassName("tabcontent detail");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      tablinks = document.getElementsByClassName("tablinks2");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.classList.add("active");
+    }
+
+    // เปิดแท็บแรกโดยอัตโนมัติ
+    document.getElementById("defaultOpen1").click();
+    document.getElementById("defaultOpen2").click();
+  </script>
+</body>
+
+</html>

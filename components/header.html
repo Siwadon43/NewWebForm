@@ -1,0 +1,99 @@
+<link href="https://fonts.googleapis.com/css2?family=Taviraj&display=swap" rel="stylesheet" />
+
+<nav class="navbar">
+	<div class="container">
+
+		<div class="brand">
+			<label id="lblPrgName" class="title-label-Prgnm"></label>
+			<label id="lblPrgID" class="title-label-Prgid"></label>
+			<input type="image" id="imgManual" src="../images/ImageHelp.png" width="15" class="title-icon"
+				alt="Submit" />
+		</div>
+
+
+		<div id="pnlCommand" class="pnlCommand d-flex">
+			<img id="btnRefresh" src="../images/refresh.png" class="command-btn" title="Refresh" alt="" />
+			<img id="btnAddnew" src="../images/addnew.png" class="command-btn" title="Add New" alt="" />
+			<img id="btnSave" src="../images/save.png" class="command-btn" title="Save" alt="" />
+			<img id="btnCancel" src="../images/cancel.png" class="command-btn" title="Cancel" alt="" />
+			<img id="btnApprove" src="../images/approve.png" class="command-btn" title="Approve" alt="" />
+			<img id="btnUnApprove" src="../images/unapprove.png" class="command-btn" title="Unapprove"
+				alt="" />
+			<img id="btnPrint" src="../images/print.png" class="command-btn" title="Print" alt="" />
+			<img id="btnVoid" src="../images/void.png" class="command-btn" title="Void" alt="" />
+			<img id="btnReject" src="../images/reject.png" class="command-btn" title="Reject" alt="" />
+			<img id="btnExit" src="../images/exit.png" class="command-btn last-btn" title="Exit" alt="" />
+			<input type="hidden" id="viewState" value="0" />
+
+		</div>
+	</div>
+</nav>
+
+<style>
+	body {
+		margin: 0;
+		font-family: 'Taviraj', serif !important;
+	}
+
+	/* โครงสร้าง navbar */
+	.navbar {
+		background-color: #ACFFA6;
+		/* สีฟ้าใกล้เคียง bg-primary */
+		color: white;
+	}
+
+	.container {
+		max-width: 100%;
+		margin: 0 auto;
+		padding: 0 16px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 5vh;
+	}
+
+	.brand {
+		color: #000000;
+		font-weight: bold;
+		text-decoration: none;
+		font-size: 1.25rem;
+		z-index: 999;
+	}
+
+	/* เมนูหลัก */
+
+	.pnlCommand {
+		display: flex;
+		justify-items: center;
+	}
+
+
+
+
+	.command-btn {
+		width: 30px;
+		height: 30px;
+	}
+
+	/* Responsive: ซ่อนเมนู และแสดงปุ่ม toggle บนจอเล็ก */
+	@media (max-width: 768px) {
+		.pnlCommand {
+			display: block;
+			padding: 0px 16px;
+			flex-direction: column;
+			width: 100%;
+			background-color: #ACFFA6;
+			position: absolute;
+			top: 5vh;
+			left: 0;
+		}
+
+		.command-btn {
+			width: 25px;
+			height: 25px;
+		}
+
+   
+
+	}
+</style>
