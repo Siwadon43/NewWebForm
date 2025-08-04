@@ -1,0 +1,165 @@
+.w80 {
+  width: 80%;
+}
+
+.w90 {
+  width: 90%;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* ช่องว่างระหว่าง checkbox กับ label */
+}
+
+.checkboxForm {
+  width: 20px;
+  height: 20px;
+}
+
+.docno_bottom {
+  padding: 10px 20px;
+  max-height: 27vh;
+  margin-bottom: 20px; /* เพิ่มระยะห่างจากขอบล่าง */
+}
+
+/* Popup style */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.button-group button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-group button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button-group button[type="button"] {
+  background-color: #ccc;
+  color: black;
+}
+
+/* From you */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkboxForm {
+  width: 20px;
+  height: 20px;
+}
+
+.docno_bottom {
+  padding: 10px 20px;
+  max-height: 27vh;
+  margin-bottom: 20px;
+}
+
+.column_button {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem; /* ระยะห่างระหว่างปุ่ม */
+  flex-wrap: wrap; /* ถ้าแคบเกินจะขึ้นบรรทัดใหม่ */
+  justify-content: start; /* จัดปุ่มให้อยู่กึ่งกลาง */
+  align-items: center;
+}
+
+.pr-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* ระยะห่างระหว่าง label กับ input */
+}
+
+.pr-input-label {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.pr-input-wrapper {
+  flex: 1;
+}
+.pr-input-box {
+  position: relative;
+  width: 69.1%; /* กว้างเต็มพื้นที่ wrapper */
+}
+
+.pr-input-text {
+  width: 100%; /* กินเต็ม pr-input-box */
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* เว้นขวาให้ไอคอน */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  color: #000; /* เปลี่ยนเป็นดำเพื่อให้เห็นชัด */
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid #e07b58;
+  border-radius: 0.5rem;
+  background-color: white; /* ให้เห็นชัด */
+  border-color: #e07b58;
+}
+
+.pr-input-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1.25rem;
+  width: 1.25rem;
+  pointer-events: none; /* ไม่บล็อกการคลิก input */
+}

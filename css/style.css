@@ -21,10 +21,6 @@
   width: 50%;
 }
 
-.w25 {
-  width: 25%;
-}
-
 .w30 {
   width: 30%;
 }
@@ -39,11 +35,6 @@
 
 .w70 {
   width: 70%;
-}
-
-
-.w75 {
-  width: 75%;
 }
 
 .w100 {
@@ -85,7 +76,46 @@
 }
 
 
+.form-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 1vw;
+  background-color: #ffffe0;
+  /* สีพื้น */
+  padding: 1rem;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
 
+.form-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+  /* ปรับความกว้างแต่ละคอลัมน์ */
+  min-width: 100px;
+}
+
+.form-column label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.form-column input {
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: right;
+  padding: 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+.form-column select {
+  width: 100%;
+  margin-bottom: 5px;
+}
 
 .form-note {
   font-size: 0.8rem;
@@ -93,7 +123,10 @@
   text-align: center;
 }
 
-
+/* ทำให้ตัวอักษรไม่ตัดขึ้นบรรทัดใหม่ */
+label {
+  white-space: nowrap;
+}
 
 
 
@@ -154,6 +187,7 @@ html {
 
 .grid-list {
   height: 55vh;
+  white-space: nowrap;
 }
 
 
@@ -181,7 +215,6 @@ html {
   min-width: 280px;
 }
 
-
 /* label */
 .lblForm {
   min-width: 120px;
@@ -189,7 +222,6 @@ html {
   font-size: 16px;
   color: #222;
   font-weight: 500;
-  font-weight: bold;
 }
 
 /* input */
@@ -317,16 +349,15 @@ html {
   /* height: 45vh; */
 }
 
-#ddlSearch {
-  width: 200px;
-  height: 35px;
-}
+  #ddlSearch {
+    width: 200px;
+    height: 35px;
+  }
 
-#cKey {
-  width: 300px;
-  height: 35px;
-}
-
+  #cKey {
+    width: 300px;
+    height: 35px;
+  }
 /* Tablet: 4 columns */
 @media screen and (max-width: 1960px) {
   .row {
@@ -346,7 +377,7 @@ html {
   .title {
     height: 10vh;
   }
-
+  
   .docno {
     max-height: none;
   }
@@ -370,7 +401,7 @@ html {
 /* Responsive: ปรับฟอร์มและแท็บ */
 @media (max-width: 700px) {
 
-  .row {
+    .row {
     grid-template-columns: repeat(1, 1fr);
   }
 
@@ -393,37 +424,4 @@ html {
     font-size: 14px;
     padding: 10px 14px;
   }
-}
-
-
-.form-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  align-items: center;
-  width: 48%;
-  /* ให้กว้างเท่ากันทั้ง 2 ช่อง */
-  min-width: 300px;
-}
-
-.lblForm {
-  width: 100%;
-  font-weight: bold;
-}
-
-.input-row {
-  width: 75%;
-  display: flex;
-  gap: 5px;
-}
-
-
-.blank {
-  background-color: transparent;
-  border: transparent;
-   pointer-events: none; /* ป้องกันการคลิก */
 }

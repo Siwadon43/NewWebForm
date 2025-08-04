@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/style_tee.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="Scripts/load-layout.js"></script>
+    <script>
+        window.AppConfig = {
+            programName: "1.3.1 หาร้านค้า",
+            programID: "(รหัสโปรแกรม ID หน้าจอยังไม่ได้กำหนด)"
+        };
+
+        // หาร้านค้า
+        const headers = [
+            { title: "[]", width: "5%", align: "center", right: "C" },
+            { title: "รหัสสินค้า", width: "6%", align: "center" },
+            { title: "ชื่อสินค้า", width: "20%", align: "center" },
+            { title: "หน่วย", width: "5%", align: "center" },
+            { title: "สาขา", width: "10%", align: "center" },
+            { title: "จำนวน", width: "5%", align: "center", right: "E" },
+            { title: "ใบขอซื้อ", width: "8%", align: "center" },
+            { title: "Last Update", width: "7%", align: "center" },
+            { title: "ราคาเดิม", width: "5%", align: "center", right: "C" },
+            { title: "รหัสพนักงานขาย", width: "8%", align: "center" },
+            { title: "ฟอร์มเอกสาร", width: "7%", align: "center" },
+        ];
+
+        const data = [
+            ["✔", "P001", "ปุ๋ยยูเรีย 46-0-0", "ถุง", "สาขา 1", 100, "PR001", "01/08/25", "500", "EMP123", "ฟอร์ม A"],
+            ["✔", "P002", "ยาฆ่าแมลง ไซเปอร์", "ขวด", "สาขา 2", 50, "PR002", "02/08/25", "320", "EMP124", "ฟอร์ม B"],
+            ["✖", "P003", "เมล็ดพันธุ์ข้าวหอมมะลิ", "กก.", "สาขา 1", 75, "PR003", "03/08/25", "150", "EMP125", "ฟอร์ม A"],
+            ["✔", "P004", "ยาปราบวัชพืช กรัมม็อกโซน", "ขวด", "สาขา 3", 30, "PR004", "04/08/25", "290", "EMP126", "ฟอร์ม C"],
+            ["✖", "P005", "เครื่องพ่นยาแบบสะพาย", "เครื่อง", "สาขา 1", 10, "PR005", "05/08/25", "1200", "EMP127", "ฟอร์ม D"],
+            ["✔", "P006", "ปุ๋ยสูตร 15-15-15", "ถุง", "สาขา 2", 80, "PR006", "06/08/25", "550", "EMP128", "ฟอร์ม A"],
+            ["✖", "P007", "ถังพ่นยาสแตนเลส", "ใบ", "สาขา 3", 20, "PR007", "07/08/25", "950", "EMP129", "ฟอร์ม B"],
+            ["✔", "P008", "เชื้อราไตรโคเดอร์มา", "กล่อง", "สาขา 1", 60, "PR008", "08/08/25", "180", "EMP130", "ฟอร์ม C"],
+            ["✖", "P009", "ยาคุมวัชพืช พรีอีเมอร์เจนท์", "ขวด", "สาขา 2", 45, "PR009", "09/08/25", "310", "EMP131", "ฟอร์ม A"],
+            ["✔", "P010", "อุปกรณ์วัดความชื้น", "เครื่อง", "สาขา 3", 5, "PR010", "10/08/25", "2500", "EMP132", "ฟอร์ม D"],
+        ];
+
+    </script>
+</head>
+
+<body>
+    <div id="pnlTitle"></div>
+
+    <div id="pnlDocno" class="docno">
+
+        <div class="row w100">
+
+            <div class="column">
+                <label class="lblForm">P/R As of #</label>
+                <div class="input-group">
+                    <div class="textbox-container w70">
+                        <input type="text" class="txtKeyForm w80 with-icon">
+                        <img src="../images/calendar2.png" class="img-icon" alt="search" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <label class="lblForm">Branch</label>
+                <div class="input-group">
+                    <div class="textbox-container w40">
+                        <select class="txtForm">
+                            <option value=""></option>
+                            <option value="001">สาขาทดสอบ 1</option>
+                            <option value="002">สาขาทดสอบ 2</option>
+                            <option value="003">สาขาทดสอบ 3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <label class="lblForm">Prd. Category</label>
+                <div class="input-group">
+                    <div class="textbox-container w40">
+                        <select class="txtForm">
+                            <option value=""></option>
+                            <option value="fertilizer">เครื่องพ่นยาแบบสะพาย</option>
+                            <option value="seed">เมล็ดพันธุ์ข้าวหอมมะลิ</option>
+                            <option value="tool">ปุ๋ยยูเรีย</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="pr-input-row">
+            <label class="pr-input-label" style="width: 7.45%;">P/R #</label>
+            <div class="pr-input-wrapper">
+                <div class="pr-input-box">
+                    <input type="text" class="pr-input-text" />
+                    <img src="../images/search2.png" class="pr-input-icon" alt="search" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row column_button">
+            <button class="txt-button">Pending</button>
+        </div>
+
+
+    </div>
+
+    <!-- ตาราง -->
+    <div id="pnlGridList" class="grid-list"></div>
+
+    <script>
+        createTableEntry("pnlGridList", headers, data);
+    </script>
+
+</body>
+
+</html>
