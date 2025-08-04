@@ -22,8 +22,8 @@
       { title: "รายการ", width: "40%", align: "left" },
       { title: "ประเภท", width: "10%", align: "left" },
       { title: "จำนวนเงิน", width: "10%", align: "right" },
-      { title: "วันที่", width: "10%", align: "center" },
-      { title: "เวลา", width: "10%", align: "center" }
+      { title: "วันที่", width: "10%", align: "left" },
+      { title: "เวลา", width: "10%", align: "left",  }
     ];
 
     const headers2 = [
@@ -32,20 +32,25 @@
       { title: "รายการ", width: "40%", align: "left" },
       { title: "ประเภท", width: "10%", align: "left" },
       { title: "จำนวนเงิน", width: "10%", align: "right" },
-      { title: "วันที่", width: "10%", align: "center" },
-      { title: "เวลา", width: "10%", align: "center" }
+      { title: "วันที่", width: "10%", align: "left" },
+      { title: "เวลา", width: "10%", align: "left" }
     ];
 
-    const data = [
-      ["","01", "รายการ1", "ชำระ", "100", "2025/07/01", "10.00"],
-      ["","02", "รายการ2", "ชำระ", "150", "2025/07/01", "10.00"]
+    const data = [];
 
-    ];
+for (let i = 1; i <= 50; i++) {
+  const id = i.toString().padStart(2, "0"); // "01", "02", ...
+  const desc = `รายการ${i}`;
+  const row = ["", id, desc, "ชำระ", "100", "2025/07/01", "10.00"];
+  data.push(row);
+}
+
+console.log(data);
 
     
 
     $(document).ready(function () {
-      $('#pnlListing').hide();
+      $('#pnlEntry').hide();
 
       $(document).on('click', '#btnAddnew', function () {
         $('#pnlListing').hide();
