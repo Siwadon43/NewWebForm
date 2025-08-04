@@ -1,0 +1,96 @@
+.lblForm_header {
+  min-width: 120px;
+  height: 34px;
+  font-size: 16px;
+  color: #222;
+  font-weight: 500;
+   font-weight: bold;
+}
+
+
+.form-wrapper {
+    background-color: #ffffe0;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  overflow-x: hidden;
+  margin: 10px 0 10px 0;
+}
+.form-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 1vw;
+
+  /* สีพื้น */
+  padding: 1rem;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+  /* ปรับความกว้างแต่ละคอลัมน์ */
+  min-width: 100px;
+}
+
+.form-column label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.form-column input {
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: right;
+  padding: 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+.form-column select {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+
+
+
+.form-fixed-labels {
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+  /* ปรับความกว้างแต่ละคอลัมน์ */
+  min-width: 100px;
+}
+
+.form-scroll {
+  overflow-x: auto;
+  flex: 1 1 auto;
+}
+
+.form-section {
+  display: flex;
+  min-width: 1100px;
+  gap: 12px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+}
+
+
+
+@media (max-width: 1100px) {
+
+  .lblForm {
+    width: 100%;
+  }
+}

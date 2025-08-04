@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/styleDC21CPQTB.css" type="text/css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="Scripts/load-layout.js"></script>
 
@@ -16,6 +17,16 @@
     };
 
     const headers = [
+      { title: "[]", width: "5%", align: "center", right: "C" },
+      { title: "ลำดับ", width: "5%", align: "left", right: "" },
+      { title: "รายการ", width: "40%", align: "left" },
+      { title: "ประเภท", width: "10%", align: "left" },
+      { title: "จำนวนเงิน", width: "10%", align: "right" },
+      { title: "วันที่", width: "10%", align: "center" },
+      { title: "เวลา", width: "10%", align: "center" }
+    ];
+
+    const headers2 = [
       { title: "[]", width: "5%", align: "center", right: "C" },
       { title: "ลำดับ", width: "5%", align: "left", right: "E" },
       { title: "รายการ", width: "40%", align: "left" },
@@ -30,6 +41,8 @@
       ["","02", "รายการ2", "ชำระ", "150", "2025/07/01", "10.00"]
 
     ];
+
+    
 
     $(document).ready(function () {
       $('#pnlListing').hide();
@@ -92,7 +105,7 @@
 
         <div class="row">
           <div class="column" style="flex-direction: unset;">
-            <label class="lblForm">รหัสส่งเสริม</label>
+            <label class="lblForm_header">รหัสส่งเสริม</label>
             <div class="input-group">
               <div class="textbox-container">
                 <input type="text" class="txtKeyForm with-icon">
@@ -102,13 +115,13 @@
             </div>
           </div>
            <div class="column" style="flex-direction: unset;">
-            <label class="lblForm">วันที่</label>
+            <label class="lblForm_header" >วันที่</label>
             <div class="input-group">
               <div class="textbox-container">
                 <input type="text" class="txtForm with-icon">
                 <img src="../images/calendar2.png" class="img-icon" alt="search" />
               </div>
-              <input type="text" class="txtForm">
+              <input type="text" class="txtForm blank" >
             </div>
           </div>
         </div>
@@ -228,18 +241,20 @@
             <input type="text" class="txtForm">
           </div>
           <div class="column">
-            <label class="lblForm">วงเงินจาก GPS/อ้อย</label>
+            <label class="lblForm" style="width: 200px;">วงเงินจาก GPS/อ้อย</label>
             <input type="text" class="txtForm">
           </div>
         </div>
-
-        <div class="form-section">
-          <div class="form-column">
-            <label class="lblForm"></label>
-            <label class="lblForm" style="text-align: right;">อ้อยใหม่</label>
-            <label class="lblForm" style="text-align: right;">อ้อยตอ</label>
-            <label class="lblForm" style="text-align: right;">อ้อยลาน</label>
+        <div class="form-wrapper">
+          
+          <div class="form-fixed-labels">
+            <label class="lblForm" style="margin-bottom: 30px;"></label>
+            <label class="lblForm" style="text-align: right;padding-right: 20px;height: 30px;">อ้อยใหม่</label>
+            <label class="lblForm" style="text-align: right;padding-right: 20px;height: 30px;">อ้อยตอ</label>
+            <label class="lblForm" style="text-align: right;padding-right: 20px;height: 30px;">อ้อยลาน</label>
           </div>
+          <div class="form-scroll">
+          <div class="form-section">
           <div class="form-column">
             <label class="lblForm">สัญญา(ตัน)</label>
             <input type="text" value="0.00" />
@@ -290,7 +305,11 @@
             <input type="text" value="0.00" />
             <input type="text" value="0.00" />
           </div>
+          </div>
+          </div>
         </div>
+    
+        
 
         <div class="row">
           <div class="column">
@@ -308,14 +327,14 @@
             <input type="text" class="txtForm">
           </div>
           <div class="column">
-            <label class="lblForm">วงเงินที่คาดว่าอนุมัติได้</label>
+            <label class="w100 lblForm">วงเงินที่คาดว่าอนุมัติได้</label>
             <input type="text" class="txtForm">
           </div>
         </div>
 
         <div class="row">
           <div class="column">
-            <label class="lblForm">สัดส่วนวงเงินที่ชาวไร่ขออนุมัติ</label>
+            <label class="lblForm w100">สัดส่วนวงเงินที่ชาวไร่ขออนุมัติ</label>
             <input type="text" class="txtForm">
           </div>
           <div class="column">
@@ -328,10 +347,11 @@
           </div>
         </div>
         <div class="w100">
-          <label for="" class="lblFrom">หมายเหตุ</label>
-          <textarea class="txtForm w100" rows="6" style="resize: none;"></textarea>
+          <label for="" class="lblFrom" style="font-weight: bold;">หมายเหตุ</label>
+          <textarea class="txtForm w100" rows="4" style="resize: none;"></textarea>
         </div>
       </div>
+
       <div id="tab5" class="tabcontent detail">
         <div id="pnlGridEntry"></div>
         <button id="btnAdditem">+</button>
@@ -341,8 +361,8 @@
     </div>
     <script src="Scripts/script.js"></script>
     <script>
-      createTable("pnlGridList", headers, data, ["edit", "delete"]);
-      createTableEntry("pnlGridEntry", headers, data, ["delete"], "30vh");
+      createTableEntry("pnlGridList", headers, data, ["edit", "delete"]);
+      createTableEntry("pnlGridEntry", headers2, data, ["delete"], "30vh");
 
       document.getElementById("defaultOpen1").click();
       document.getElementById("defaultOpen2").click();
