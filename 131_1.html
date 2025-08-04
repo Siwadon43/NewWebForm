@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>131_1</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/style_tee.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -19,16 +19,16 @@
         // หาร้านค้า
         const headers = [
             { title: "[]", width: "5%", align: "center", right: "C" },
-            { title: "รหัสสินค้า", width: "6%", align: "center" },
-            { title: "ชื่อสินค้า", width: "20%", align: "center" },
-            { title: "หน่วย", width: "5%", align: "center" },
-            { title: "สาขา", width: "10%", align: "center" },
-            { title: "จำนวน", width: "5%", align: "center", right: "E" },
-            { title: "ใบขอซื้อ", width: "8%", align: "center" },
-            { title: "Last Update", width: "7%", align: "center" },
-            { title: "ราคาเดิม", width: "5%", align: "center", right: "C" },
-            { title: "รหัสพนักงานขาย", width: "8%", align: "center" },
-            { title: "ฟอร์มเอกสาร", width: "7%", align: "center" },
+            { title: "Product Code", width: "6%", align: "left" },
+            { title: "Product Name", width: "20%", align: "left" },
+            { title: "Unit", width: "5%", align: "left" },
+            { title: "Branch", width: "10%", align: "left" },
+            { title: "Quantity", width: "5%", align: "right", right: "E" },
+            { title: "Purchase Req.", width: "8%", align: "left" },
+            { title: "Last Update", width: "7%", align: "left" },
+            { title: "Old Price", width: "5%", align: "center", right: "C" },
+            { title: "Salesperson ID", width: "8%", align: "left" },
+            { title: "Document Form", width: "7%", align: "left" },
         ];
 
         const data = [
@@ -58,7 +58,7 @@
                 <label class="lblForm">P/R As of #</label>
                 <div class="input-group">
                     <div class="textbox-container w70">
-                        <input type="text" class="txtKeyForm w80 with-icon">
+                        <input type="text" class="txtForm w80 with-icon">
                         <img src="../images/calendar2.png" class="img-icon" alt="search" />
                     </div>
                 </div>
