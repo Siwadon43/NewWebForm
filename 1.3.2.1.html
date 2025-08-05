@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1.3.2.1</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="Scripts/load-layout.js"></script>
+
+        <script>
+    window.AppConfig = {
+            programName: "ระบบสอบราคา และ แนบเอกสาร",
+            programID: "(รหัสไอดีหน้าจอ)"
+        };
+
+    const headers = [
+      { title: "[]", width: "5%", align: "center", right: "C" },
+      { title: "Request PeiceData", width: "10%", align: "left", right: "E" },
+      { title: "By", width: "10%", align: "left" },
+      { title: "ChackPrice", width: "10%", align: "left" },
+      { title: "Product Code", width: "10%", align: "right" },
+      { title: "Name", width: "10%", align: "center" },
+      { title: "U / M", width: "10%", align: "center" },
+      { title: "Branch", width: "10%", align: "center" },
+      { title: "P / R List", width: "10%", align: "center" },
+      { title: "Vendor List", width: "10%", align: "center" }
+    ];
+
+    const data = [
+      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"],
+      ["", "02", "2025/07/02", "User2", "ChackPrice2", "ProductCode2", "Name2", "U/M2", "Branch2", "Vendor List"],
+      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"],
+      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"],
+      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"],
+      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"],
+      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"],
+      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"]
+      
+
+    ];
+
+    $(document).ready(function () {
+      $('#pnlListing').hide();
+
+      $(document).on('click', '#btnAddnew', function () {
+        $('#pnlListing').hide();
+        $('#pnlEntry').show();
+      })
+
+      $(document).on('click', '#btnCancel', function () {
+        $('#pnlListing').show();
+        $('#pnlEntry').hide();
+      })
+
+
+    });
+
+
+  </script>
+    </head>
+
+    <body>
+
+        <div id="pnlTitle" class="title"></div>
+        <div class="entryDetail">
+            <div id="tab5" class="tabcontent detail">
+                <div id="pnlGridEntry"></div>
+            </div>
+        </div>
+        <script src="Scripts/script.js"></script>
+        <script>
+      // createTable("pnlGridList", headers, data, ["edit", "delete"]);
+      createTableEntry("pnlGridEntry", headers, data, [], "30vh");
+    </script>
+    </body>
+
+</html>
