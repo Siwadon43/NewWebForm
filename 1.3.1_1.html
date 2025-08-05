@@ -5,15 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>131_1</title>
+    <title>13.1.1_1</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/style_tee.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="Scripts/load-layout.js"></script>
     <script>
         window.AppConfig = {
-            programName: "ระบบสอบราคา และ แนบเอกสาร",
-            programID: "(รหัสไอดีหน้าจอ)"
+            programName: "หาร้านค้า",
+            programID: ""
         };
 
         // หาร้านค้า
@@ -48,17 +48,17 @@
 </head>
 
 <body>
-    <div id="pnlTitle"></div>
-
+    <div id="pnlTitle" class="title"></div>
+     <div id="pnlListing" class="listing">
     <div id="pnlDocno" class="docno">
 
         <div class="row w100">
 
             <div class="column">
                 <label class="lblForm">P/R As of #</label>
-                <div class="input-group">
-                    <div class="textbox-container w70">
-                        <input type="text" class="txtForm w80 with-icon">
+                <div class="input-group w100">
+                    <div class="textbox-container w100">
+                        <input type="text" class="txtForm w100 with-icon">
                         <img src="../images/calendar2.png" class="img-icon" alt="search" />
                     </div>
                 </div>
@@ -66,9 +66,9 @@
 
             <div class="column">
                 <label class="lblForm">Branch</label>
-                <div class="input-group">
-                    <div class="textbox-container w40">
-                        <select class="txtForm">
+                <div class="input-group w100">
+                    <div class="textbox-container w100">
+                        <select class="txtForm w100">
                             <option value=""></option>
                             <option value="001">สาขาทดสอบ 1</option>
                             <option value="002">สาขาทดสอบ 2</option>
@@ -80,9 +80,9 @@
 
             <div class="column">
                 <label class="lblForm">Prd. Category</label>
-                <div class="input-group">
-                    <div class="textbox-container w40">
-                        <select class="txtForm">
+                <div class="input-group w100">
+                    <div class="textbox-container w100">
+                        <select class="txtForm w100">
                             <option value=""></option>
                             <option value="fertilizer">เครื่องพ่นยาแบบสะพาย</option>
                             <option value="seed">เมล็ดพันธุ์ข้าวหอมมะลิ</option>
@@ -92,32 +92,40 @@
                 </div>
             </div>
 
-
-        </div>
-
-        <div class="pr-input-row">
-            <label class="pr-input-label" style="width: 7.45%;">P/R #</label>
-            <div class="pr-input-wrapper">
-                <div class="pr-input-box">
-                    <input type="text" class="pr-input-text" />
-                    <img src="../images/search2.png" class="pr-input-icon" alt="search" />
+            <div class="column">
+                <label class="lblForm">P/R #</label>
+                <div class="pr-input-wrapper w100">
+                    <div class="textbox-container w100">
+                        <input type="text" class="txtKeyForm w100" />
+                        <img src="../images/search2.png" class="pr-input-icon" alt="search" />
+                    </div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="row column_button">
+             <div class="column">
             <button class="txt-button">Pending</button>
         </div>
+        </div>
+
+   
+
+
+       
 
 
     </div>
 
     <!-- ตาราง -->
-    <div id="pnlGridList" class="grid-list"></div>
-
+    <div id="pnlGridList" class="grid-list">
+        <div id="divSearch" class="d-flex align-items-center search">
+            <select id="ddlSearch" class="ddlForm" style="width: 200px;">
+                <option value="">คำค้นหา</option>
+            </select>
+            <input type="text" id="cKey" class="txtForm" style="width: 300px;" />
+        </div>
+    </div>
+</div>
     <script>
-        createTableEntry("pnlGridList", headers, data);
+        createTable("pnlGridList", headers, data, []);
     </script>
 
 </body>

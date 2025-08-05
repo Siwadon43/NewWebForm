@@ -12,8 +12,8 @@
     <script src="Scripts/load-layout.js"></script>
     <script>
         window.AppConfig = {
-            programName: "ระบบสอบราคา และ แนบเอกสาร",
-            programID: "(รหัสไอดีหน้าจอ)"
+            programName: "กรอกราคาแนบไฟล์",
+            programID: ""
         };
 
         const headers = [
@@ -46,132 +46,189 @@
         ];
 
     </script>
+    <style>
+
+
+
+
+
+
+
+
+    </style>
 </head>
 
 <body>
     <div id="pnlTitle"></div>
+    <div id="pnlListing" class="listing">
+        <div id="pnlDocno" class="docno">
 
-    <div id="pnlDocno" class="docno">
+            <div class="row">
+                <div class="column">
+                    <label class="lblForm">Check Price #</label>
+                    <input type="text" class="txtForm w100">
+                </div>
 
-        <div class="row">
-
-            <div class="column">
-                <label class="lblForm">Check Price #</label>
-                <input type="text" class="txtForm">
-            </div>
-
-            <div class="column">
-                <label class="lblForm">วันที่ (วัน/เดือน/ปี)</label>
-                <input type="text" class="txtForm">
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="column">
-                <label class="lblForm">Vendor Code #</label>
-                <div class="input-group">
-                    <div class="textbox-container w40">
-                        <input type="text" class="txtKeyForm w100 with-icon">
-                        <img src="../images/search2.png" class="img-icon" alt="search" />
+                <div class="column">
+                    <label class="lblForm">วันที่</label>
+                    <input type="text" class="txtForm w100">
+                </div>
+                <div class="column">
+                    <label class="lblForm">Vender Code</label>
+                    <div class="input-group w100">
+                        <div class="textbox-container w40">
+                            <input type="text" class="txtKeyForm w100 with-icon">
+                            <img src="../images/search2.png" class="img-icon" alt="search" />
+                        </div>
+                        <input type="text" class="txtForm w60">
                     </div>
-                    <input type="text" class="txtForm w60">
+                </div>
+                <div class="column">
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="column">
+                    <label class="lblForm">Aprrove</label>
+                    <input type="text" class="txtForm w100">
+                </div>
+
+                <div class="column">
+                    <label class="lblForm">By</label>
+                    <input type="text" class="txtForm w100">
+                </div>
+
+                <div class="column">
+                    <label class="lblForm">Flag</label>
+                    <input type="text" class="txtForm w100">
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="column">
+                    <label class="lblForm">Last Update</label>
+                    <input type="text" class="txtForm w100">
+                </div>
+
+
+                <div class="column">
+                    <label class="lblForm">By</label>
+                    <input type="text" class="txtForm w100">
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="column">
+                    <input type="checkbox" class="checkboxForm">
+                    <label class="lblForm" for="quote">ใบเสนอราคา</label>
+                    <button class="txt-button">แนบไฟล์</button>
+                </div>
+
+                <div class="column">
+
                 </div>
             </div>
 
         </div>
 
+        <!-- ตาราง -->
+        <div id="pnlGridList"></div>
+
+        <div class="docno">
+
+            <div class="row">
+                <div class="column">
+                    <label class="lblForm w50">ระยะเวลาในการยื่น</label>
+                    <div class="w50">
+                        <input type="text" class="txtForm w80">
+                        <label class="lblForm w20">วัน</label>
+                    </div>
+
+                </div>
+
+                <div class="column">
+                    <label class="lblForm w50">กำหนดการส่งมอบ</label>
+                    <div class="w50">
+                        <input type="text" class="txtForm w80">
+                        <label class="lblForm w20">วัน</label>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label class="lblForm w50">มูลค่าที่ลดแบบ Sales Order</label>
+                    <div class="w50">
+                        <input type="text" class="txtForm w80">
+                        <label class="lblForm w20">บาท</label>
+                    </div>
+                </div>
+                <div class="column">
+                    <label class="lblForm w50">การรับประเมิน</label>
+                    <div class="w50">
+                        <input type="text" class="txtForm w80">
+                        <label class="lblForm"></label>
+                    </div>
+                </div>
+            </div>
+
+
         <div class="row">
-
             <div class="column">
-                <label class="lblForm">Aprrove</label>
-                <input type="text" class="txtForm">
+                <label class="lblForm w100">มูลค่าที่ลดจากการเปรียบเทียบ</label>
+            </div>
+        </div>
+           <div class="row">
+                <div class="column">
+                    <label class="lblForm w50">1.ประหยัดจากราคาเดิม</label>
+                    <div class="w50">
+                        <input type="text" class="txtForm w80">
+                        <label class="lblForm w20">บาท</label>
+                    </div>
+                </div>
+                <div class="column">
+                    <label class="lblForm w50">2.ประหยัดจากการต่อราคา</label>
+                    <div class="w50">
+                        <input type="text" class="txtForm w80">
+                        <label class="lblForm"></label>
+                    </div>
+                </div>
             </div>
 
-            <div class="column">
-                <label class="lblForm">By</label>
-                <input type="text" class="txtForm">
+            <div class="row">
+                <div class="column">
+                    <label class="lblForm w50">เงื่อนไขการประเมิน</label>
+                    <div class="w50">
+                        <input type="text" class="txtForm w80">
+                        <label class="lblForm w20">บาท</label>
+                    </div>
+                </div>
+                <div class="column">
+                    <label class="lblForm w50">ค่าจัดส่ง</label>
+                    <div class="w50">
+                        <input type="text" class="txtForm w80">
+                        <label class="lblForm"></label>
+                    </div>
+                </div>
             </div>
 
-            <div class="column">
-                <label class="lblForm">Flag</label>
-                <input type="text" class="txtForm">
-            </div>
+
 
         </div>
-
-        <div class="row">
-
-            <div class="column">
-                <label class="lblForm">Last Update</label>
-                <input type="text" class="txtForm">
-            </div>
-
-            <div class="column">
-                <label class="lblForm">By</label>
-                <input type="text" class="txtForm">
-            </div>
-
-            <div class="column">
-                <input type="checkbox" class="checkboxForm">
-                <label class="lblForm" for="quote">ใบเสนอราคา</label>
-            </div>
-
-            <div class="column">
-                <button class="txt-button">แนบไฟล์</button>
-            </div>
-
-        </div>
-
     </div>
-
-    <!-- ตาราง -->
-    <div id="pnlGridList" class="grid-list"></div>
-
-    <div id="pnlDocno" class="docno_bottom">
-
-        <div class="row">
-            <label class="lblForm">ระยะเวลาในการยื่น</label>
-            <input type="text" class="txtForm">
-
-            <label class="lblForm">กำหนดการส่งมอบ</label>
-            <input type="text" class="txtForm">
-
-
-        </div>
-
-        <div class="row">
-            <label class="lblForm">มูลค่าที่ลดจากการเปรียบเทียบ</label>
-        </div>
-
-        <div class="row">
-            <label class="lblForm">1. ประหยัดจากราคาเดิม</label>
-            <input type="text" class="txtForm">
-
-            <label class="lblForm">2. ประหยัดจากการต่อราคา</label>
-            <input type="text" class="txtForm">
-        </div>
-    </br>
-        <div class="row">
-            <label class="lblForm">มูลค่าที่ลดแบบ Sales Order</label>
-            <input type="text" class="txtForm">
-
-            <label class="lblForm">ค่าจัดส่ง</label>
-            <input type="text" class="txtForm">
-        </div>
-    </br>
-        <div class="row">
-            <label class="lblForm">การรับประเมิน</label>
-            <input type="text" class="txtForm">
-            <label class="lblForm">เงื่อนไขการประเมิน</label>
-            <input type="text" class="txtForm">
-        </div>
-
     </div>
-    </div>
-
     <script>
-        createTableEntry("pnlGridList", headers, data, ["edit", "delete"]);
+        createTable("pnlGridList", headers, data, ["edit", "delete"], "40vh");
 
         //createTable แก้ไขในช่องไม่ได้
         //createTableEntry แก้ไขในช่องได้เลย

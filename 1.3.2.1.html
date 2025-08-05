@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>1.3.2.1</title>
-        <link rel="stylesheet" href="css/style.css" type="text/css" />
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="Scripts/load-layout.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.3.2.1</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="Scripts/load-layout.js"></script>
 
-        <script>
+  <script>
     window.AppConfig = {
-            programName: "ระบบสอบราคา และ แนบเอกสาร",
-            programID: "(รหัสไอดีหน้าจอ)"
-        };
+      programName: "Request Price Approved",
+      programID: ""
+    };
 
     const headers = [
       { title: "[]", width: "5%", align: "center", right: "C" },
@@ -37,12 +37,12 @@
       ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"],
       ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"],
       ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "Branch1", "Vendor List"]
-      
+
 
     ];
 
     $(document).ready(function () {
-      $('#pnlListing').hide();
+      $('#pnlListing').show();
 
       $(document).on('click', '#btnAddnew', function () {
         $('#pnlListing').hide();
@@ -59,21 +59,30 @@
 
 
   </script>
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <div id="pnlTitle" class="title"></div>
-        <div class="entryDetail">
-            <div id="tab5" class="tabcontent detail">
-                <div id="pnlGridEntry"></div>
-            </div>
+  <div id="pnlTitle" class="title"></div>
+  <div id="pnlListing" class="listing">
+    <div id="pnlDocno" class="docno">
+      <div id="pnlGridEntry">
+        <div id="divSearch" class="d-flex align-items-center search">
+          <select id="ddlSearch" class="ddlForm" style="width: 200px;">
+            <option value="">คำค้นหา</option>
+          </select>
+          <input type="text" id="cKey" class="txtForm" style="width: 300px;" />
         </div>
-        <script src="Scripts/script.js"></script>
-        <script>
-      // createTable("pnlGridList", headers, data, ["edit", "delete"]);
-      createTableEntry("pnlGridEntry", headers, data, [], "30vh");
-    </script>
-    </body>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="Scripts/script.js"></script>
+  <script>
+    // createTable("pnlGridList", headers, data, ["edit", "delete"]);
+    createTable("pnlGridEntry", headers, data, []);
+  </script>
+</body>
 
 </html>

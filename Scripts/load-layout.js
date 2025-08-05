@@ -246,19 +246,21 @@ function heightDisplay() {
   const pnlDocno = document.getElementById('pnlDocno')
   const divSearch = document.getElementById('divSearch')
 
-
-  const heightTitle = pnlTitle.getBoundingClientRect().height
-  const heightDocno = pnlDocno.getBoundingClientRect().height
-  const heightSearch = divSearch.getBoundingClientRect().height
+  const heightTitle = pnlTitle ? pnlTitle.getBoundingClientRect().height : 0
+  const heightDocno = pnlDocno ? pnlDocno.getBoundingClientRect().height : 0
+  const heightSearch = divSearch ? divSearch.getBoundingClientRect().height : 0
   const heightViewport = window.innerHeight
-  let heightGrid = 0;
-  console.log("pnlTitle", heightTitle); // ความสูงบนจอจริง
-  console.log("pnlDocno", heightDocno); // ความสูงบนจอจริง
-  console.log("divSearch", heightSearch); // ความสูงบนจอจริง
-  console.log("Viewport ", heightViewport);
-  heightGrid = heightViewport - (heightDocno + heightSearch + heightTitle + heightTitle)
-  console.log('Grid', heightGrid);
+
+  const heightGrid = heightViewport - ((heightTitle * 2) + heightDocno + heightSearch)
+
+  console.log("pnlTitle", heightTitle)
+  console.log("pnlDocno", heightDocno)
+  console.log("divSearch", heightSearch)
+  console.log("Viewport", heightViewport)
+  console.log("Grid", heightGrid)
+
   return heightGrid + 'px'
 }
+
 
 loadHeader();

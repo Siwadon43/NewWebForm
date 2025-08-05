@@ -2,8 +2,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   /* Default: 8 columns */
-  gap: 10px;
+  gap: 30px;
 }
+
+
 
 .column {
   display: flex;
@@ -17,8 +19,12 @@
   /* ระยะห่างระหว่างช่อง */
 }
 
-.w50 {
-  width: 50%;
+.w10{
+  width: 10%;
+}
+
+.w20{
+  width: 20%;
 }
 
 .w30 {
@@ -27,6 +33,10 @@
 
 .w40 {
   width: 40%;
+}
+
+.w50 {
+  width: 50%;
 }
 
 .w60 {
@@ -157,6 +167,10 @@ html {
   color: #333;
 }
 
+.listing{
+  padding: 10px 20px;
+}
+
 /* Container pnlEntry */
 #pnlEntry.entry {
   background-color: #e0f7fa;
@@ -172,7 +186,7 @@ html {
 }
 
 .docno {
-  padding: 10px 20px;
+  padding: 10px 10px;
   max-height: 27vh;
 
 }
@@ -254,10 +268,8 @@ html {
 }
 
 .txtKeyForm {
-  background-color: coral;
-  color: #fff;
+  background-color: orange;
   font-weight: 600;
-  border-color: #e07b58;
 }
 
 .txtForm:focus,
@@ -425,3 +437,9 @@ html {
     padding: 10px 14px;
   }
 }
+
+
+/*--------------------------- */
+
+
+
