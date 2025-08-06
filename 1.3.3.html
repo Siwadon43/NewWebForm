@@ -23,8 +23,8 @@
             { title: "Quantity", width: "5%", align: "right" },
             { title: "Unit-Price", width: "7%", align: "right", right: "E" },
             { title: "Discount", width: "6%", align: "right", right: "E" },
-            { title: "Amount", width: "7%", align: "right" },
-            { title: "Remark", width: "25%", align: "left" },
+            { title: "Amount", width: "7%", align: "right", right: "E" },
+            { title: "Remark", width: "25%", align: "left", right: "E" },
         ];
 
         const data = [
@@ -62,35 +62,56 @@
     <div id="pnlTitle"></div>
     <div id="pnlListing" class="listing">
         <div id="pnlDocno" class="docno">
+            <div>
+                <div class="row">
+                    <div class="column">
+                        <label class="lblForm">Check Price #</label>
+                        <input type="text" class="txtForm w100">
+                    </div>
 
-            <div class="row">
-                <div class="column">
-                    <label class="lblForm">Check Price #</label>
-                    <input type="text" class="txtForm w100">
-                </div>
-
-                <div class="column">
-                    <label class="lblForm">วันที่</label>
-                    <input type="text" class="txtForm w100">
-                </div>
-                <div class="column">
-                    <label class="lblForm">Vender Code</label>
-                    <div class="input-group w100">
-                        <div class="textbox-container w40">
-                            <input type="text" class="txtKeyForm w100 with-icon">
-                            <img src="../images/search2.png" class="img-icon" alt="search" />
+                    <div class="column">
+                        <label class="lblForm">วันที่</label>
+                        <input type="text" class="txtForm w100">
+                    </div>
+                    <div class="column">
+                        <label class="lblForm">Vender Code</label>
+                        <div class="input-group w100">
+                            <div class="textbox-container w40">
+                                <input type="text" class="txtKeyForm w100 with-icon">
+                                <img src="../images/search2.png" class="img-icon" alt="search" />
+                            </div>
+                            <input type="text" class="txtForm w60">
                         </div>
-                        <input type="text" class="txtForm w60">
+                    </div>
+                    <div class="column">
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <label class="lblForm">Last Update</label>
+                        <input type="text" class="txtForm w100">
+                    </div>
+                    <div class="column">
+                        <label class="lblForm">By</label>
+                        <input type="text" class="txtForm w100">
                     </div>
                 </div>
-                <div class="column">
+                <div class="row">
+                    <div class="column">
+                        <input type="checkbox" class="checkboxForm">
+                        <label class="lblForm" for="quote">ใบเสนอราคา</label>
+                        <button class="txt-button">แนบไฟล์</button>
+                    </div>
 
+                    <div class="column">
+
+                    </div>
                 </div>
-
             </div>
-
-
-            <div class="row">
+            <div>
+                <div class="row">
 
                 <div class="column">
                     <label class="lblForm">Aprrove</label>
@@ -108,34 +129,9 @@
                 </div>
 
             </div>
-
-            <div class="row">
-
-                <div class="column">
-                    <label class="lblForm">Last Update</label>
-                    <input type="text" class="txtForm w100">
-                </div>
-
-
-                <div class="column">
-                    <label class="lblForm">By</label>
-                    <input type="text" class="txtForm w100">
-                </div>
-
-
-
             </div>
-            <div class="row">
-                <div class="column">
-                    <input type="checkbox" class="checkboxForm">
-                    <label class="lblForm" for="quote">ใบเสนอราคา</label>
-                    <button class="txt-button">แนบไฟล์</button>
-                </div>
 
-                <div class="column">
-
-                </div>
-            </div>
+            
 
         </div>
 
@@ -183,12 +179,12 @@
             </div>
 
 
-        <div class="row">
-            <div class="column">
-                <label class="lblForm w100">มูลค่าที่ลดจากการเปรียบเทียบ</label>
+            <div class="row">
+                <div class="column">
+                    <label class="lblForm w100">มูลค่าที่ลดจากการเปรียบเทียบ</label>
+                </div>
             </div>
-        </div>
-           <div class="row">
+            <div class="row">
                 <div class="column">
                     <label class="lblForm w50">1.ประหยัดจากราคาเดิม</label>
                     <div class="w50">
@@ -228,7 +224,7 @@
     </div>
     </div>
     <script>
-        createTable("pnlGridList", headers, data, ["edit", "delete"], "40vh");
+        createTable("pnlGridList", headers, data, ["delete"], "40vh");
 
         //createTable แก้ไขในช่องไม่ได้
         //createTableEntry แก้ไขในช่องได้เลย
