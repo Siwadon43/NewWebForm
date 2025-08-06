@@ -99,9 +99,9 @@ function createTable(
       th.textContent = col.title;
     }
 
-    if (col.right == 'E'){
-      th.style.color = "red"
-    }
+    // if (col.right == 'E'){
+    //   th.style.color = "red"
+    // }
 
     headRow.appendChild(th);
   });
