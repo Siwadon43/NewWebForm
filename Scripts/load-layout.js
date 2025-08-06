@@ -93,10 +93,14 @@ function createTable(
           }
         });
       });
-
+      
       th.appendChild(checkbox);
     } else {
       th.textContent = col.title;
+    }
+
+    if (col.right == 'E'){
+      th.style.color = "red"
     }
 
     headRow.appendChild(th);
@@ -133,7 +137,7 @@ function createTable(
       td.style.fontSize = "12px";
       td.style.height = "28px";          // ✅ ความสูงหัวตาราง
       td.style.lineHeight = "28px";
-      td.style.padding = "0 4px";
+      td.style.padding = "4px 4px";
       td.style.wordWrap = "break-word";
       td.style.whiteSpace = "normal"; // ตัดบรรทัดได้
       let element;
