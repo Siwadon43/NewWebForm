@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.3.3</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/style_tee.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="Scripts/load-layout.js"></script>
+    <script>
+        window.AppConfig = {
+            programName: "กรอกราคาแนบไฟล์",
+            programID: ""
+        };
+
+        const headers = [
+            { title: "Product Code", width: "8%", align: "left", right: "E" },
+            { title: "Name", width: "30%", align: "left" },
+            { title: "U/M", width: "5%", align: "left" },
+            { title: "Qty", width: "5%", align: "right" },
+            { title: "Unit-Price", width: "7%", align: "right", right: "E" },
+            { title: "%Disc", width: "6%", align: "right", right: "E" },
+            { title: "Amount", width: "7%", align: "right", right: "E" },
+            { title: "Remark", width: "25%", align: "left", right: "E" },
+        ];
+
+        const data = [
+            ["P001", "เครื่องพิมพ์เลเซอร์", "เครื่อง", 2, "4,500.00", "500.00", "8,500.00", "แถมหมึก 1 ตลับ"],
+            ["P002", "โต๊ะทำงานไม้", "ชุด", 1, "3,200.00", "0.00", "3,200.00", "สีโอ๊คเข้ม"],
+            ["P003", "เก้าอี้สำนักงาน", "ตัว", 4, "1,200.00", "0.00", "4,800.00", "มีพนักพิงหลัง"],
+            ["P004", "จอคอมพิวเตอร์ 24 นิ้ว", "เครื่อง", 2, "3,900.00", "300.00", "7,500.00", "Full HD"],
+            ["P005", "สาย LAN CAT6", "เมตร", 50, "25.00", "250.00", "1,000.00", "ใช้เดินระบบเครือข่าย"],
+            ["P006", "ลิขสิทธิ์ซอฟต์แวร์ Office", "ชุด", 5, "2,990.00", "0.00", "14,950.00", "Office 365 Business"],
+            ["P007", "แฟลชไดร์ฟ 64GB", "อัน", 10, "250.00", "0.00", "2,500.00", "USB 3.0 ความเร็วสูง"],
+            ["P008", "เครื่องคิดเลขวิทยาศาสตร์", "เครื่อง", 3, "450.00", "50.00", "1,300.00", "รุ่น fx-991EX"],
+            ["P009", "สมุดโน้ต A5", "เล่ม", 30, "35.00", "0.00", "1,050.00", "ปกแข็ง"],
+            ["P010", "ปากกาเจล 0.5mm", "กล่อง", 20, "120.00", "0.00", "2,400.00", "หมึกน้ำเงิน"],
+            ["P011", "เครื่องสแกนเอกสาร", "เครื่อง", 1, "6,500.00", "500.00", "6,000.00", "รองรับ A4/A5"],
+            ["P012", "ตู้เก็บเอกสารเหล็ก", "ใบ", 2, "3,000.00", "0.00", "6,000.00", "4 ชั้น ล็อกได้"],
+            ["P013", "สายต่อพ่วงไฟ 5 ช่อง", "เส้น", 10, "180.00", "100.00", "1,700.00", "สายยาว 3 เมตร"],
+            ["P014", "กล่องเก็บเอกสาร", "ใบ", 15, "60.00", "0.00", "900.00", "ขนาด A4"],
+            ["P015", "กระดานไวท์บอร์ด", "แผ่น", 1, "2,800.00", "300.00", "2,500.00", "ขนาด 120x90 ซม."]
+        ];
+
+    </script>
+    <style>
+        .rowV2 {
+            padding-top: 10px;
+            display: flex;
+        }
+
+        .row {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0px;
+        }
+
+        .column {
+            flex: 1;
+            padding: 0 10px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            /* ปรับระยะห่างตามต้องการ */
+        }
+
+        .form-column:first-child {
+            width: 80%;
+        }
+
+        .form-column:last-child {
+            width: 20%;
+        }
+
+        .form-column label {
+            text-align: left;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* ปรับระยะห่างระหว่าง checkbox กับ label */
+        }
+
+        .checkboxForm {
+            width: 20px;
+            /* หรือกำหนดขนาดเอง เช่น 16px */
+            height: 20px;
+            margin: 0;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: none;
+                gap: 0px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                width: 100%;
+            }
+
+
+            .form-column:first-child {
+                width: 100%;
+            }
+
+            .form-column:last-child {
+                width: 100%;
+            }
+
+            .rowV2 {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pnlTitle"></div>
+    <div id="pnlListing" class="listing">
+        <div id="pnlDocno" class="docno">
+            <div class="form-row">
+                <div class="form-column">
+                    <div class="row w100">
+                        <div class="column">
+                            <label class="lblForm">Check Price #</label>
+                            <input type="text" class="txtForm w100">
+                        </div>
+
+                        <div class="column">
+                            <label class="lblForm">วันที่</label>
+                            <input type="text" class="txtForm w100">
+                        </div>
+                        <div class="column">
+                            <label class="lblForm">Vender Code</label>
+                            <div class="input-group w100">
+                                <div class="textbox-container w40">
+                                    <input type="text" class="txtKeyForm w100 with-icon">
+                                    <img src="../images/search2.png" class="img-icon" alt="search" />
+                                </div>
+                                <input type="text" class="txtForm w60">
+                            </div>
+                        </div>
+                        <div class="column">
+
+                        </div>
+
+                    </div>
+                    <div class="row w100">
+                        <div class="column">
+                            <label class="lblForm">Last Update</label>
+                            <input type="text" class="txtForm w100">
+                        </div>
+                        <div class="column">
+                            <label class="lblForm">By</label>
+                            <input type="text" class="txtForm w100">
+                        </div>
+                    </div>
+                    <div class="row w100">
+                        <div class="column" style="text-align: left;">
+                            <div class="checkbox-row">
+                                <input type="checkbox" class="checkboxForm w10" id="quote">
+                                <label class="lblForm" for="quote">ใบเสนอราคา</label>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="column">
+                            <button class="txt-button" style="width: 100px;">แนบไฟล์</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="rowV2">
+
+                        <div class="column">
+                            <label class="lblForm">Aprrove Date</label>
+                            <input type="text" class="txtForm w100" disabled>
+                        </div>
+                    </div>
+                    <div class="rowV2">
+                        <div class="column">
+                            <label class="lblForm">By</label>
+                            <input type="text" class="txtForm w100" disabled>
+                        </div>
+                    </div>
+                    <div class="rowV2">
+                        <div class="column">
+                            <label class="lblForm">Flag</label>
+                            <input type="text" class="txtForm w100" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- ตาราง -->
+    <div id="pnlGridList"></div>
+
+    <div class="docno">
+
+        <div class="row">
+            <div class="column">
+                <label class="lblForm w50">ระยะเวลาในการยื่น</label>
+                <div class="w50">
+                    <input type="text" class="txtForm w80">
+                    <label class="lblForm w20">วัน</label>
+                </div>
+
+            </div>
+
+            <div class="column">
+                <label class="lblForm w50">กำหนดการส่งมอบ</label>
+                <div class="w50">
+                    <input type="text" class="txtForm w80">
+                    <label class="lblForm w20">วัน</label>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row">
+            <div class="column">
+                <label class="lblForm w50">มูลค่าที่ลดแบบ Sales Order</label>
+                <div class="w50">
+                    <input type="text" class="txtForm w80">
+                    <label class="lblForm w20">บาท</label>
+                </div>
+            </div>
+            <div class="column">
+                <label class="lblForm w50">การรับประกัน</label>
+                <div class="w50">
+                    <input type="text" class="txtForm w80">
+                    <label class="lblForm"></label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="column">
+                <label class="lblForm w100">มูลค่าที่ลดจากการเปรียบเทียบ</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label class="lblForm w50">1.ประหยัดจากราคาเดิม</label>
+                <div class="w50">
+                    <input type="text" class="txtForm w80">
+                    <label class="lblForm w20">บาท</label>
+                </div>
+            </div>
+            <div class="column">
+                <label class="lblForm w50">2.ประหยัดจากการต่อราคา</label>
+                <div class="w50">
+                    <input type="text" class="txtForm w80">
+                    <label class="lblForm"></label>
+                    <label class="lblForm w20">บาท</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label class="lblForm w50">เงื่อนไขการชำระเงิน</label>
+                <div class="w50">
+                    <input type="text" class="txtForm w80">
+                    <label class="lblForm w20">บาท</label>
+                </div>
+            </div>
+            <div class="column">
+                <label class="lblForm w50">การจัดส่ง</label>
+                <div class="w50">
+                    <input type="text" class="txtForm w80">
+                    <label class="lblForm"></label>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+    </div>
+    <script>
+        createTable("pnlGridList", headers, data, ["delete"], "40vh");
+
+        //createTable แก้ไขในช่องไม่ได้
+        //createTableEntry แก้ไขในช่องได้เลย
+    </script>
+</body>
+
+</html>
