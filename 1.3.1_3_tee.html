@@ -17,24 +17,32 @@
 
         // ⭐ แก้ไขการจัดวางข้อมูลใน const headers นี้
         const headers = [
-            { title: "[]", width: "8%", align: "center", right: "C" },      // Text -> ซ้าย
-            { title: "Name", width: "18%", align: "left" },             // Text -> ซ้าย
-            { title: "Contacter", width: "12%", align: "left" },        // Text -> ซ้าย
-            { title: "Mail / Phone", width: "16%", align: "left" },         // Text -> ซ้าย
-            { title: "From", width: "12%", align: "left" },           // Status -> กลาง
-            { title: "Last Action", width: "12%", align: "left" },      // Text -> ซ้าย
-            { title: "Lead Time", width: "12%", align: "right" },       // Numberic -> ขวา
-            { title: "Due", width: "10%", align: "center" },         // Status -> กลาง
+            { title: "[]", width: "5%", align: "center", right: "C" },
+            { title: "Vendor Code", width: "8%", align: "left" },
+            { title: "Name", width: "18%", align: "left" },
+            { title: "Contractor", width: "12%", align: "left" },
+            { title: "Mail / Phone", width: "16%", align: "left" },
+            { title: "From", width: "12%", align: "left" },
+            { title: "Last Action", width: "12%", align: "left" },
+            { title: "Lead Time", width: "12%", align: "right" },
+            { title: "On Due", width: "10%", align: "center" },
         ];
 
         // ⭐ ปรับข้อมูลตัวอย่างเพื่อให้สอดคล้องกับ Headers
         const data = [
-            ["", "เครื่องพิมพ์เลเซอร์", "สมศรี", "somsri@vendor.com", "P/O", "04/08/2025", 4500.00, "Y"],
-            ["", "จอคอมพิวเตอร์", "สมชาย", "081-234-5678", "P/O", "03/08/2025", 3200.50, "Y"],
-            ["", "เมาส์ไร้สาย", "สมศักดิ์", "somsak@vendor.com", "RFQ", "01/08/2025", 799.00, "N"],
-            ["", "คีย์บอร์ด", "สมใจ", "082-345-6789", "P/O", "31/07/2025", 1250.00, "Y"],
-            ["", "พาวเวอร์ซัพพลาย", "สมหวัง", "somwang@vendor.com", "RFQ", "30/07/2025", 2100.75, "N"],
+            ["", "V001", "บริษัท ไทยเทคโนโลยี", "อนันต์", "anan@thaitech.com", "RFQ", "01/08/2025", 7, "08/08/2025"],
+            ["", "V002", "ซัพพลายพลัส", "กมล", "081-999-1111", "P/O", "02/08/2025", 3, "05/08/2025"],
+            ["", "V003", "อินโฟซิส", "สมปอง", "sompong@infosys.co.th", "RFQ", "05/08/2025", 5, "10/08/2025"],
+            ["", "V004", "โปรซีสเต็มส์", "ชลธิชา", "086-888-2222", "P/O", "03/08/2025", 2, "05/08/2025"],
+            ["", "V005", "เอ็นจิเนียร์ซัพพลาย", "ประเสริฐ", "prasert@engineer.com", "RFQ", "04/08/2025", 6, "10/08/2025"],
+            ["", "V006", "เวนเดอร์วัน", "ปิยะ", "piya@vendor1.com", "P/O", "01/08/2025", 4, "05/08/2025"],
+            ["", "V007", "อีซี่เทรด", "จิราพร", "089-123-4567", "RFQ", "30/07/2025", 9, "08/08/2025"],
+            ["", "V008", "โอเมก้าเทค", "ยุทธนา", "yutthana@omega.co.th", "P/O", "02/08/2025", 1, "03/08/2025"],
+            ["", "V009", "ซอฟต์ซัพพลาย", "กานต์", "karn@softsup.com", "RFQ", "03/08/2025", 5, "08/08/2025"],
+            ["", "V010", "ไฟน์เทค", "สมเกียรติ", "084-456-7890", "P/O", "04/08/2025", 3, "07/08/2025"],
         ];
+
+
     </script>
 </head>
 
