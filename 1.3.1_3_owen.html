@@ -18,28 +18,29 @@
         // ⭐ แก้ไขการจัดวางข้อมูลใน const headers นี้
         const headers = [
             { title: "[]", width: "5%", align: "center", right: "C" },
-            { title: "Vendor Code", width: "6%", align: "left" },
-            { title: "Name", width: "18%", align: "left" },
-            { title: "Contractor", width: "11%", align: "left" },
-            { title: "Mail / Phone", width: "15%", align: "left" },
-            { title: "From", width: "7%", align: "left" },
-            { title: "Last Action", width: "7%", align: "left" },
-            { title: "Lead Time", width: "6%", align: "right" },
-            { title: "On Due", width: "7%", align: "left" },
+            { title: "Vendor Code", width: "5%", align: "left" },
+            { title: "Name", width: "10%", align: "left" },
+            { title: "Contractor", width: "10%", align: "left" },
+            { title: "Phone", width: "5%", align: "left" },
+            { title: "Mail", width: "10%", align: "left" },
+            { title: "From", width: "5%", align: "left" },
+            { title: "Last Action", width: "5%", align: "left" },
+            { title: "Lead Time", width: "5%", align: "right" },
+            { title: "On Due", width: "5%", align: "left" },
         ];
 
         // ⭐ ปรับข้อมูลตัวอย่างเพื่อให้สอดคล้องกับ Headers
         const data = [
-            ["", "V001", "บริษัท ไทยเทคโนโลยี", "อนันต์", "anan@thaitech.com", "Offer,P/O,Check", "01/08/2025", 7, "08/08/2025"],
-            ["", "V002", "ซัพพลายพลัส", "กมล", "081-999-1111", "Offer,P/O,Check", "02/08/2025", 3, "05/08/2025"],
-            ["", "V003", "อินโฟซิส", "สมปอง", "sompong@infosys.co.th", "Offer,P/O,Check", "05/08/2025", 5, "10/08/2025"],
-            ["", "V004", "โปรซีสเต็มส์", "ชลธิชา", "086-888-2222", "Offer,P/O,Check", "03/08/2025", 2, "05/08/2025"],
-            ["", "V005", "เอ็นจิเนียร์ซัพพลาย", "ประเสริฐ", "prasert@engineer.com", "Offer,P/O,Check", "04/08/2025", 6, "10/08/2025"],
-            ["", "V006", "เวนเดอร์วัน", "ปิยะ", "piya@vendor1.com", "Offer,P/O,Check", "01/08/2025", 4, "05/08/2025"],
-            ["", "V007", "อีซี่เทรด", "จิราพร", "089-123-4567", "Offer,P/O,Check", "30/07/2025", 9, "08/08/2025"],
-            ["", "V008", "โอเมก้าเทค", "ยุทธนา", "yutthana@omega.co.th", "Offer,P/O,Check", "02/08/2025", 1, "03/08/2025"],
-            ["", "V009", "ซอฟต์ซัพพลาย", "กานต์", "karn@softsup.com", "Offer,P/O,Check", "03/08/2025", 5, "08/08/2025"],
-            ["", "V010", "ไฟน์เทค", "สมเกียรติ", "084-456-7890", "Offer,P/O,Check", "04/08/2025", 3, "07/08/2025"],
+            ["", "V00001", "บริษัทไทยเคหะภัณฑ์ จำกัด", "อนันต์ มหาชัย", "0888878889", "anan@thaitech.com", "Check", "01/08/2025", 7, "08/08/2025"],
+            ["", "V00002", "บริษัทซัพพลายพลัส จำกัด", "กมล แสงวิจิต", "0819991111" ,"kamon@hotmail.com", "P/O", "02/08/2025", 3, "05/08/2025"],
+            ["", "V00003", "บริษัทอินโฟซิส จำกัด", "สมปอง แสงเย็น", "0856324562","sompong@infosys.co.th", "P/O", "05/08/2025", 5, "10/08/2025"],
+            ["", "V00004", "บริษัทโปรซีสเต็มส์ จำกัด", "ชลธิชา สมาธิชอบ", "0868882222","cholticha@gmail.com", "Offer", "03/08/2025", 2, "05/08/2025"],
+            ["", "V00005", "บริษัทเอ็นจิเนียร์ซัพพลาย จำกัด", "ประเสริฐ แสงจันทร์", "0945623653","prasert@engineer.com", "P/O", "04/08/2025", 6, "10/08/2025"],
+            ["", "V00006", "บริษัทเวนเดอร์วัน จำกัด", "ปิยะ มหาพิกุล", "0865324561","piya@vendor1.com", "Offer", "01/08/2025", 4, "05/08/2025"],
+            ["", "V00007", "บริษัทอีซี่เทรด จำกัด", "จิราพร จามจองหอง", "089-123-4567","jirapon@hotmail.com", "Check", "30/07/2025", 9, "08/08/2025"],
+            ["", "V00008", "บริษัทโอเมก้าเทค จำกัด", "ยุทธนา มาปิติ", "0623597894","yutthana@omega.co.th", "P/O", "02/08/2025", 1, "03/08/2025"],
+            ["", "V00009", "บริษัทซอฟต์ซัพพลาย จำกัด", "กานต์ ชาญศรี", "0965659978","karn@softsup.com", "P/O", "03/08/2025", 5, "08/08/2025"],
+            ["", "V00010", "บริษัทไฟน์เทค จำกัด", "สมเกียรติ มโนธรรมมั่ง", "0844567890","somk@hotmail.com", "Offer", "04/08/2025", 3, "07/08/2025"],
         ];
 
 
@@ -49,14 +50,14 @@
 <body>
     <div id="pnlTitle" class="title"></div>
     <div id="pnlListing" class="listing">
-       <div class="column" style="display: flex;justify-content: flex-start;">
+       <!-- <div class="column" style="display: flex;justify-content: flex-start;">
     <div style="display: flex; justify-content: flex-start; height: 50px; text-align: left; gap: 10px;">
         <button id="btnNew" class="txt-button" style="padding: 5px 10px; font-size: 16px;">New</button>
         <button id="btnSave" class="txt-button" style="padding: 5px 10px; font-size: 16px;">Save</button>
         <button id="btnBack" class="txt-button" style="padding: 5px 10px; font-size: 16px;">Back</button>
     </div>
 
-</div>
+</div> -->
         <div id="pnlDocno" class="docno">
             <div class="row">
                 <div class="column">

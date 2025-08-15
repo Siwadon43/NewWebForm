@@ -18,25 +18,21 @@
     const headers = [
       { title: "[]", width: "5%", align: "center", right: "C" },
       { title: "Product", width: "10%", align: "left", right: "E" },
-      { title: "Code", width: "10%", align: "left" },
-      { title: "Name", width: "10%", align: "left" },
-      { title: "U / M", width: "10%", align: "right" },
-      { title: "Branch", width: "10%", align: "center" },
-      { title: "P / R List", width: "10%", align: "center" },
-      { title: "Vendor List", width: "10%", align: "center" },
+      { title: "Name", width: "20%", align: "left" },
+      { title: "U / M", width: "5%" },
+      { title: "Branch", width: "5%" },
+      { title: "P / R List", width: "20%" },
+      { title: "Vendor List", width: "20%"},
       { title: "Find Vendor", width: "10%", align: "center" },
-      { title: "Attach File", width: "10%", align: "center" }
+      { title: "Attach File", width: "5%", align: "center" }
     ];
 
     const data = [
-      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "🔍", "+"],
-      ["", "02", "2025/07/02", "User2", "ChackPrice2", "ProductCode2", "Name2", "U/M2", "🔍", "+"],
-      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "🔍", "+"],
-      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "🔍", "+"],
-      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "🔍", "+"],
-      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "🔍", "+"],
-      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "🔍", "+"],
-      ["", "01", "2025/07/01", "User1", "ChackPrice1", "ProductCode1", "Name1", "U/M1", "🔍", "+"]
+      ["", "P009", "เก้าอี้สำนักงาน", "ตัว", "HO", "25PRHO0715002, 25PRHO0720005, 25PRHO0729005", "V00001,V00009,V00014", "🔍", "1"],
+      ["", "P011", "โต๊ะทำงาน", "ตัว", "HO", "25PRHO0714002, 25PRHO0721005", "V00002", "🔍", "3"],
+      ["", "P009", "เก้าอี้สำนักงาน", "แท่ง", "UD", "25PRUD0713005, 25PRUD07240004, 25PRUD0725004", "V00004,V00005", "🔍", "2"],
+      ["", "P031", "แปรงล้างห้องน้ำ", "ด้าม", "UD", "25PRUD0712055, 25PRUD07250014, 25PRUD0728016", "V00001", "🔍", "1"],
+      ["", "P032", "ไม้ถูกพื้น", "ด้าม", "UD", "25PRUD0712055", "V00001", "🔍", "0"],
     ];
 
     $(document).ready(function () {
@@ -62,15 +58,15 @@
 <body>
 
   <div id="pnlTitle" class="title"></div>
-  <div id="pnlListing" class="listing" >
-      <div id="pnlGridEntry">
-        <div id="divSearch" class="d-flex align-items-center search">
-          <select id="ddlSearch" class="ddlForm" style="width: 200px;">
-            <option value="">คำค้นหา</option>
-          </select>
-          <input type="text" id="cKey" class="txtForm" style="width: 300px;" />
-        </div>
+  <div id="pnlListing" class="listing">
+    <div id="pnlGridEntry">
+      <div id="divSearch" class="d-flex align-items-center search">
+        <select id="ddlSearch" class="ddlForm" style="width: 200px;">
+          <option value="">คำค้นหา</option>
+        </select>
+        <input type="text" id="cKey" class="txtForm" style="width: 300px;" />
       </div>
+    </div>
   </div>
   <script src="Scripts/script.js"></script>
   <script>
