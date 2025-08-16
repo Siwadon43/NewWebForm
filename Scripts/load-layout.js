@@ -124,6 +124,7 @@ function createTable(
 
     row.forEach((cell, i) => {
       const td = document.createElement("td");
+      const id = `Row${rowIndex}_Col${i}`;
       const align = headers[i].align || "left";
       const rightType = headers[i].right ?? "";
       const color = headers[i].color ?? "black";
@@ -144,13 +145,14 @@ function createTable(
 
       if (rightType === "E") {
         const input = document.createElement("input");
+        input.id = id;
         input.type = "text";
         input.value = cell;
         input.disabled = false;
         input.style.width = "100%";
         input.style.height = "25px";
         input.style.padding = "2px 6px";
-        input.style.border = "none";
+        input.style.border = "1px solid black";
         input.style.backgroundColor = "transparent";
         input.style.borderRadius = "4px";
         input.style.fontSize = "14px";
@@ -158,6 +160,7 @@ function createTable(
         element = input;
       } else if (rightType === "C") {
         const checkbox = document.createElement("input");
+        checkbox.id;
         checkbox.type = "checkbox";
         checkbox.checked = cell === true || cell === "true" || cell === 1;
         checkbox.disabled = false;
@@ -167,6 +170,7 @@ function createTable(
         element = checkbox;
       } else {
         const label = document.createElement("label");
+        label.id = id;
         label.textContent = cell;
         label.style.display = "block";
         label.style.padding = "1px 6px";
@@ -210,16 +214,17 @@ function createTable(
         }
 
         if (btnType === "delete") {
+          img.id = `delete_Row${rowIndex}`
           img.src = "images/delete3.png";
           img.alt = "Delete";
           img.title = "ลบ";
           img.classList.add("icon-delete");
 
-          img.onclick = () => {
-            if (confirm(`ต้องการลบแถวที่ ${rowIndex + 1} หรือไม่?`)) {
-              tr.remove();
-            }
-          };
+          // img.onclick = () => {
+          //   if (confirm(`ต้องการลบแถวที่ ${rowIndex + 1} หรือไม่?`)) {
+          //     tr.remove();
+          //   }
+          // };
         }
 
         btnWrapper.appendChild(img);

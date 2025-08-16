@@ -21,6 +21,7 @@ html {
 .column {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 
@@ -68,6 +69,17 @@ html {
 
 .w100 {
   width: 100%;
+}
+
+.alignRight {
+  text-align: right;
+}
+.alignLeft {
+  text-align: left;
+}
+
+.alignCenter {
+  text-align: left;
 }
 
 .txt-button {
@@ -251,7 +263,6 @@ html {
 /* label */
 .lblForm {
   min-width: 120px;
-  height: 34px;
   font-size: 16px;
   color: #222;
   font-weight: 500;

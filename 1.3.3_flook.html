@@ -17,24 +17,87 @@
         };
 
         const headers = [
-            { title: "Product Code", width: "8%", align: "left", right: "E" },
+            { title: "Product Code", width: "8%", align: "left" },
             { title: "Name", width: "30%", align: "left" },
             { title: "U/M", width: "5%", align: "left" },
             { title: "Qty", width: "5%", align: "right" },
             { title: "Unit-Price", width: "7%", align: "right", right: "E" },
             { title: "%Disc", width: "6%", align: "right", right: "E" },
-            { title: "Amount", width: "7%", align: "right", right: "E" },
+            { title: "Disc", width: "6%", align: "right", right: "E" },
+            { title: "Amount", width: "7%", align: "right" },
             { title: "Remark", width: "25%", align: "left", right: "E" },
         ];
 
         const data = [
-            ["P001", "เครื่องพิมพ์เลเซอร์", "เครื่อง","2", "4,500.00", "500.00", "8,500.00", "แถมหมึก 1 ตลับ"],
-            ["P002", "โต๊ะทำงานไม้", "ชุด", "1", "3,200.00", "0.00", "3,200.00", "สีโอ๊คเข้ม"],
-            ["P003", "เก้าอี้สำนักงาน", "ตัว", "4", "1,200.00", "0.00", "4,800.00", "มีพนักพิงหลัง"],
-            ["P004", "จอคอมพิวเตอร์ 24 นิ้ว", "เครื่อง", "2", "3,900.00", "300.00", "7,500.00", "Full HD"],
-            ["P005", "สาย LAN CAT6", "เมตร", "50", "25.00", "250.00", "1,000.00", "ใช้เดินระบบเครือข่าย"],
-            ["P006", "ลิขสิทธิ์ซอฟต์แวร์ Office", "ชุด", "5", "2,990.00", "0.00", "14,950.00", "Office 365 Business"],
+            ["P001", "เครื่องพิมพ์เลเซอร์", "เครื่อง", "5.00", "0.00", "0.00", "0.00", "0.00", ""],
+            ["P002", "โต๊ะทำงานไม้", "ชุด", "30.00", "0.00", "0.00", "0.00", "0.00", ""],
+            ["P003", "เก้าอี้สำนักงาน", "ตัว", "40.00", "0.00", "0.00", "0.00", "0.00", ""],
+            ["P004", "จอคอมพิวเตอร์ 24 นิ้ว", "เครื่อง", "5.00", "0.00", "0.00", "0.00", "0.00", ""],
+            ["P005", "สาย LAN CAT6", "เมตร", "10.00", "0.00", "0.00", "0.00", "0.00", ""],
+            ["P006", "ลิขสิทธิ์ซอฟต์แวร์ Office", "ชุด", "10.00", "0.00", "0.00", "0.00", "0.00", ""],
         ];
+
+        $(document).ready(function () {
+            // ฟังก์ชันใส่ comma
+            function formatNumberWithComma(value) {
+                const num = parseFloat(value) || 0;
+                return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+
+            // ฟังก์ชันคำนวณ Col7
+            function calculateCol7($tr) {
+                const col3Val = parseFloat($tr.find('[id$="_Col3"]').text().replace(/,/g, '')) || 0;
+                const col4Val = parseFloat($tr.find('[id$="_Col4"]').val().replace(/,/g, '')) || 0;
+                const col5Val = parseFloat($tr.find('[id$="_Col5"]').val().replace(/,/g, '')) || 0;
+                const col6Val = parseFloat($tr.find('[id$="_Col6"]').val().replace(/,/g, '')) || 0;
+
+                const result = (col4Val * col3Val) * (col5Val / 100);
+                const finalVal = (col4Val * col3Val) - result - col6Val;
+
+                $tr.find('[id$="_Col4"]').val(formatNumberWithComma(col4Val));
+                $tr.find('[id$="_Col5"]').val(formatNumberWithComma(col5Val));
+                $tr.find('[id$="_Col6"]').val(formatNumberWithComma(col6Val));
+                $tr.find('[id$="_Col7"]').text(formatNumberWithComma(finalVal));
+            }
+
+            // เรียกใช้เมื่อ Col4, Col5, หรือ Col6 เปลี่ยนค่า
+            $(document).on("change", '[id$="_Col4"], [id$="_Col5"], [id$="_Col6"]', function () {
+                const $tr = $(this).closest("tr");
+                calculateCol7($tr);
+            });
+
+            $(document).on("click", '[id$="_Col4"], [id$="_Col5"], [id$="_Col6"]', function () {
+                this.select(); // this คือ input ที่ถูกคลิก
+            });
+            $(document).on("click", '[id^="delete_Row"]', function () {
+                const $tr = $(this).closest("tr");
+
+                setValue($tr.find('[id$="_Col4"]'), formatNumberWithComma(0));
+                setValue($tr.find('[id$="_Col5"]'), formatNumberWithComma(0));
+                setValue($tr.find('[id$="_Col6"]'), formatNumberWithComma(0));
+                setValue($tr.find('[id$="_Col7"]'), formatNumberWithComma(0));
+                setValue($tr.find('[id$="_Col8"]'), "");
+
+            });
+
+
+
+        });
+
+        function formatNumberWithComma(value) {
+            const num = parseFloat(value) || 0;
+            return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function setValue($el, value) {
+            if ($el.is("input, textarea, select")) {
+                $el.val(value);
+            } else {
+                $el.text(value);
+            }
+        }
+
+
 
     </script>
     <style>
@@ -43,10 +106,7 @@
             display: flex;
         }
 
-        .row {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0px;
-        }
+
 
         .column {
             flex: 1;
@@ -85,6 +145,9 @@
             margin: 0;
         }
 
+        #pnlGridList {
+            padding: 0px 20px !important;
+        }
 
 
         @media (max-width: 768px) {
@@ -118,60 +181,62 @@
     <div id="pnlTitle"></div>
     <div id="pnlListing" class="listing">
         <div id="pnlDocno" class="docno">
-            <div class="form-row">
-                <div class="form-column">
-                    <div class="row w100">
-                        <div class="column">
-                            <label class="lblForm">Check Price #</label>
-                            <input type="text" class="txtForm w100">
-                        </div>
+            <div class="row w100">
+                <div class="column">
+                    <label class="lblForm">Check Price #</label>
+                    <input type="text" class="txtForm w100" disabled>
+                </div>
 
-                        <div class="column">
-                            <label class="lblForm">วันที่</label>
-                            <input type="text" class="txtForm w100">
+                <div class="column">
+                    <label class="lblForm">วันที่</label>
+                    <input type="text" class="txtForm w100" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label class="lblForm">Vender Code</label>
+                    <div class="input-group w100">
+                        <div class="textbox-container w40">
+                            <input type="text" class="txtKeyForm w100" disabled>
                         </div>
-                        <div class="column">
-                            <label class="lblForm">Vender Code</label>
-                            <div class="input-group w100">
-                                <div class="textbox-container w40">
-                                    <input type="text" class="txtKeyForm w100 with-icon">
-                                    <img src="../images/search2.png" class="img-icon" alt="search" />
-                                </div>
-                                <input type="text" class="txtForm w60">
-                            </div>
-                        </div>
-                        <div class="column">
-
-                        </div>
-
-                    </div>
-                    <div class="row w100">
-                        <div class="column">
-                            <label class="lblForm">Last Update</label>
-                            <input type="text" class="txtForm w100">
-                        </div>
-                        <div class="column">
-                            <label class="lblForm">By</label>
-                            <input type="text" class="txtForm w100">
-                        </div>
-                    </div>
-                    <div class="row w100">
-                        <div class="column" style="text-align: left;">
-                            <div class="checkbox-row">
-                                <input type="checkbox" class="checkboxForm w10" id="quote">
-                                <label class="lblForm" for="quote">ใบเสนอราคา</label>
-                            </div>
-
-
-
-                        </div>
-
-                        <div class="column">
-                            <button class="txt-button" style="width: 100px;">แนบไฟล์</button>
-                        </div>
+                        <input type="text" class="txtForm w60" disabled>
                     </div>
                 </div>
-                <div class="form-column">
+                <div class="column">
+                    <label class="lblForm">ผู้ติดต่อ</label>
+                    <input type="text" class="txtForm w100" disabled>
+                </div>
+                <div class="column">
+                    <label class="lblForm">เบอร์โทร</label>
+                    <input type="text" class="txtForm w100" disabled>
+                </div>
+                <div class="column">
+                    <label class="lblForm">อีเมล</label>
+                    <input type="text" class="txtForm w100" disabled>
+                </div>
+
+            </div>
+            <div class="row w100">
+                <div class="column" style="text-align: left;">
+                    <label class="lblForm"></label>
+                    <div class="checkbox-row">
+                        <input type="checkbox" class="checkboxForm w10" id="quote">
+                        <label class="lblForm" for="quote">ใบเสนอราคา</label>
+                        <button class="txt-button" style="width: 100px;">แนบไฟล์</button>
+                    </div>
+                </div>
+
+                <div class="column">
+
+                </div>
+                <div class="column"></div>
+                <div class="column">
+                    <label for="" class="lblForm w100" style="color: red;">Last Update 16/08/2025 By TES </label>
+                    <label for="" class="lblForm w100" style="color: red;">Aprrove Date 16/08/2024 By TES</label>
+                </div>
+            </div>
+
+            <!-- <div class="form-column">
                     <div class="rowV2">
 
                         <div class="column">
@@ -191,8 +256,7 @@
                             <input type="text" class="txtForm w100" disabled>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> -->
         </div>
 
 
@@ -207,7 +271,7 @@
             <div class="column">
                 <label class="lblForm w50">ระยะเวลาในการยื่น</label>
                 <div class="w50">
-                    <input type="text" class="txtForm w80">
+                    <input type="text" class="txtForm w80 alignRight">
                     <label class="lblForm w20">วัน</label>
                 </div>
 
@@ -216,19 +280,14 @@
             <div class="column">
                 <label class="lblForm w50">กำหนดการส่งมอบ</label>
                 <div class="w50">
-                    <input type="text" class="txtForm w80">
+                    <input type="text" class="txtForm w80 alignRight">
                     <label class="lblForm w20">วัน</label>
                 </div>
             </div>
-
-
-
-        </div>
-        <div class="row">
             <div class="column">
                 <label class="lblForm w50">มูลค่าที่ลดแบบ Share Order</label>
                 <div class="w50">
-                    <input type="text" class="txtForm w80">
+                    <input type="text" class="txtForm w80 alignRight">
                     <label class="lblForm w20">บาท</label>
                 </div>
             </div>
@@ -239,6 +298,11 @@
                     <label class="lblForm"></label>
                 </div>
             </div>
+
+
+        </div>
+        <div class="row">
+
         </div>
 
 
