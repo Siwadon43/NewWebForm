@@ -12,7 +12,7 @@ html {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   /* Default: 8 columns */
-  gap: 30px;
+  gap: 20px;
   padding: 5px 0;
 }
 
@@ -21,7 +21,6 @@ html {
 .column {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 
@@ -199,7 +198,7 @@ html {
 }
 
 .listing{
-  padding: 10px 20px;
+  padding: 10px 20px;;
 }
 
 /* Container pnlEntry */
@@ -218,7 +217,7 @@ html {
 
 .docno {
   padding: 10px 10px;
-  max-height: 27vh;
+  /* max-height: 27vh; */
 
 }
 

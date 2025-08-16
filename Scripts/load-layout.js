@@ -51,7 +51,7 @@ function createTable(
 
   const newHeaders =
     actionButtons.length > 0
-      ? [...headers, { title: "จัดการ", width: "10%", align: "center" }]
+      ? [...headers, { title: "จัดการ", width: "5%", align: "center" }]
       : [...headers];
 
   newHeaders.forEach((col, colIndex) => {

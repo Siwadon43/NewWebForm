@@ -20,11 +20,12 @@
         const headers = [
             { title: "[]", width: "5%", align: "center", right: "C" },
             { title: "Product Code", width: "10%", align: "left" },
-            { title: "Product Name", width: "20%", align: "left" },
+            { title: "Product Name", width: "15%", align: "left" },
             { title: "U/M", width: "5%", align: "left" },
             { title: "Branch", width: "5%", align: "left" },
-            { title: "Q'TY", width: "5%", align: "right", right: "E" },
-            { title: "Purchase Req.", width: "20%", align: "left" },
+            { title: "Q'TY", width: "5%", align: "right" },
+            { title: "Purchase Req.", width: "15%", align: "left" },
+            { title: "Reject Note", width: "10%", align: "left" },
             { title: "Last Update", width: "5%", align: "left" },
             { title: "Use Old-Price", width: "7%", align: "center", right: "C" },
             { title: "Vendor Code", width: "8%", align: "left" },
@@ -32,13 +33,15 @@
         ];
 
         const data = [
-            ["✔", "P001", "เหล็กแท่ง 3 เมตร", "แท่ง", "HO", "100.00", "25PRHO0715001, 25PRHO0720001, 25PRHO0729003", "29/07/2025", "", "V00001", "P/O"],
-            ["✔", "P002", "ไม้อัด 6x3 เมตร", "แผ่น", "HO", "50.00", "25PRHO0715001, 25PRHO0716004", "16/07/2025", "", "V00001", "Offer"],
-            ["✖", "P001", "เหล็ก 3 เมตร", "แท่ง", "UD", "75.00", "25PRUD0712001, 25PRUD0801001", "01/08/2025", "", "V00001", "Check"],
-            ["✔", "P004", "ปากกาลูกลื่น", "แท่ง", "UD", "30.00", "25PRUD0712005, 25PRUD07250004, 25PRUD0728004", "28/07/2025", "", "V0004", "P/O"],
-            ["✖", "P005", "กระดาษ A4", "รีม", "UD", "10.00", "25PRUD0805006", "05/08/2025", "", "V23001", "Offer"],
+            ["✔", "P001", "เหล็กแท่ง 3 เมตร", "แท่ง", "HO", "100.00", "25PRHO0715001, 25PRHO0720001, 25PRHO0729003","", "29/07/2025", "", "V00001", "P/O"],
+            ["✔", "P002", "ไม้อัด 6x3 เมตร", "แผ่น", "HO", "50.00", "25PRHO0715001, 25PRHO0716004","", "16/07/2025", "", "V00001", "Offer"],
+            ["✖", "P001", "เหล็ก 3 เมตร", "แท่ง", "UD", "75.00", "25PRUD0712001, 25PRUD0801001","", "01/08/2025", "", "V00001", "Check"],
+            ["✔", "P004", "ปากกาลูกลื่น", "แท่ง", "UD", "30.00", "25PRUD0712005, 25PRUD07250004, 25PRUD0728004","", "28/07/2025", "", "V0004", "P/O"],
+            ["✖", "P005", "กระดาษ A4", "รีม", "UD", "10.00", "25PRUD0805006","", "05/08/2025", "", "V23001", "Offer"],
         ];
 
+
+       
     </script>
 </head>
 
@@ -87,19 +90,19 @@
                 </div>
                 <div class="column">
                     <label class="lblForm">P/R #</label>
-                    <div class="pr-input-wrapper w100">
+                    <div class="input-group">
                         <div class="textbox-container w100">
-                            <input type="text" class="txtKeyForm w100" />
-                            <img src="../images/search2.png" class="pr-input-icon" alt="search" />
+                            <input type="text" class="txtKeyForm w100 with-icon">
+                            <img src="../images/search2.png" class="img-icon" alt="search" />
                         </div>
                     </div>
                 </div>
 
-               
+
             </div>
             <div class="row">
-                 <div class="column">
-                    <button class="txt-button">Pending</button>
+                <div class="column">
+                    <button class="txt-button" id="btnPending">Pending</button>
                 </div>
             </div>
 
