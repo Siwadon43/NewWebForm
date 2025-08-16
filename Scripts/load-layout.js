@@ -26,7 +26,6 @@ async function loadGridList() {
  * @param {Array} actionButtons - array ของปุ่มที่จะเพิ่มในคอลัมน์จัดการ เช่น ["open", "delete"]
  */
 
-
 function createTable(
   containerId,
   headers,
@@ -34,7 +33,6 @@ function createTable(
   actionButtons = [],
   vheight = heightDisplay()
 ) {
-
   const borderStyleTable = "1px solid #bbb";
   const wrapper = document.createElement("div");
   wrapper.style.height = vheight;
@@ -48,7 +46,7 @@ function createTable(
   table.style.tableLayout = "fixed";
 
   const thead = document.createElement("thead");
-  thead.style.height = "30px"
+  thead.style.height = "30px";
   const headRow = document.createElement("tr");
 
   const newHeaders =
@@ -65,7 +63,7 @@ function createTable(
     th.style.top = "0";
     th.style.backgroundColor = "#FED9B7";
     th.style.zIndex = "10";
-    th.style.height = "35px";          // ✅ ความสูงหัวตาราง
+    th.style.height = "35px"; // ✅ ความสูงหัวตาราง
     th.style.lineHeight = "35px";
     th.style.fontSize = "14px";
     th.style.padding = "0 4px";
@@ -93,7 +91,7 @@ function createTable(
           }
         });
       });
-      
+
       th.appendChild(checkbox);
     } else {
       th.textContent = col.title;
@@ -105,8 +103,6 @@ function createTable(
 
     headRow.appendChild(th);
   });
-
-
 
   thead.appendChild(headRow);
   table.appendChild(thead);
@@ -130,15 +126,19 @@ function createTable(
       const td = document.createElement("td");
       const align = headers[i].align || "left";
       const rightType = headers[i].right ?? "";
+      const color = headers[i].color ?? "black";
+
 
       td.style.textAlign = align;
       td.style.border = borderStyleTable;
       td.style.padding = "0px 4px";
       td.style.fontSize = "12px";
-      td.style.height = "28px";          // ✅ ความสูงหัวตาราง
+      td.style.color = color;
+      td.style.height = "28px"; // ✅ ความสูงหัวตาราง
       td.style.lineHeight = "28px";
       td.style.padding = "4px 4px";
       td.style.wordWrap = "break-word";
+      td.style.whiteSpace = "normal"; // ตัดบรรทัดได้
       td.style.whiteSpace = "normal"; // ตัดบรรทัดได้
       let element;
 
@@ -156,7 +156,6 @@ function createTable(
         input.style.fontSize = "14px";
         input.style.textAlign = align;
         element = input;
-
       } else if (rightType === "C") {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
@@ -175,12 +174,12 @@ function createTable(
         label.style.height = "25px";
         label.style.lineHeight = "25px";
         label.style.textAlign = align;
-        label.style.wordWrap = "break-word";     // ให้ตัดคำเมื่อเกินขอบ
-        label.style.whiteSpace = "normal";       // อนุญาตให้ขึ้นบรรทัดใหม่
+        label.style.wordWrap = "break-word"; // ให้ตัดคำเมื่อเกินขอบ
+        label.style.whiteSpace = "normal"; // อนุญาตให้ขึ้นบรรทัดใหม่
         label.style.height = "auto"; // ✅ ขยายอัตโนมัติ
         element = label;
       }
-      td.style.verticalAlign = "top";            // ✅ ให้ td ชิดบน
+      td.style.verticalAlign = "top"; // ✅ ให้ td ชิดบน
       td.style.height = "auto";
       td.appendChild(element);
       tr.appendChild(td);
@@ -244,27 +243,41 @@ function createTable(
   }
 }
 
+function getHeaders($table) {
+  var $ths = $table.find("thead th");
+  var headers;
 
-function heightDisplay() {
-  const pnlTitle = document.getElementById('pnlTitle')
-  const pnlDocno = document.getElementById('pnlDocno')
-  const divSearch = document.getElementById('divSearch')
-
-  const heightTitle = pnlTitle ? pnlTitle.getBoundingClientRect().height : 0
-  const heightDocno = pnlDocno ? pnlDocno.getBoundingClientRect().height : 0
-  const heightSearch = divSearch ? divSearch.getBoundingClientRect().height : 0
-  const heightViewport = window.innerHeight
-
-  const heightGrid = heightViewport - ((heightTitle * 2) + heightDocno + heightSearch)
-
-  console.log("pnlTitle", heightTitle)
-  console.log("pnlDocno", heightDocno)
-  console.log("divSearch", heightSearch)
-  console.log("Viewport", heightViewport)
-  console.log("Grid", heightGrid)
-
-  return heightGrid + 'px'
+  if ($ths.length) {
+    headers = $ths.map((i, th) => $(th).text().trim()).get();
+  } else {
+    headers = $table
+      .find("tr:first th, tr:first td")
+      .map((i, el) => $(el).text().trim())
+      .get();
+  }
+  return headers.filter((h) => h !== "" && h !== "📎" && h !== "จัดการ");
 }
 
+function heightDisplay() {
+  const pnlTitle = document.getElementById("pnlTitle");
+  const pnlDocno = document.getElementById("pnlDocno");
+  const divSearch = document.getElementById("divSearch");
+
+  const heightTitle = pnlTitle ? pnlTitle.getBoundingClientRect().height : 0;
+  const heightDocno = pnlDocno ? pnlDocno.getBoundingClientRect().height : 0;
+  const heightSearch = divSearch ? divSearch.getBoundingClientRect().height : 0;
+  const heightViewport = window.innerHeight;
+
+  const heightGrid =
+    heightViewport - (heightTitle * 2 + heightDocno + heightSearch);
+
+  console.log("pnlTitle", heightTitle);
+  console.log("pnlDocno", heightDocno);
+  console.log("divSearch", heightSearch);
+  console.log("Viewport", heightViewport);
+  console.log("Grid", heightGrid);
+
+  return heightGrid + "px";
+}
 
 loadHeader();

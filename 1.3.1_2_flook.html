@@ -19,12 +19,12 @@
       { title: "[]", width: "5%", align: "center", right: "C" },
       { title: "Product", width: "10%", align: "left", right: "E" },
       { title: "Name", width: "20%", align: "left" },
-      { title: "U / M", width: "5%" },
+      { title: "U/M", width: "5%" },
       { title: "Branch", width: "5%" },
-      { title: "P / R List", width: "20%" },
-      { title: "Vendor List", width: "20%"},
+      { title: "P/R List", width: "20%" },
+      { title: "Vendor List", width: "20%" },
       { title: "Find Vendor", width: "10%", align: "center" },
-      { title: "Attach File", width: "5%", align: "center" }
+      { title: "📎", width: "5%", align: "center", color: "blue" }
     ];
 
     const data = [
@@ -48,17 +48,41 @@
         $('#pnlEntry').hide();
       })
 
-
+      var headers = getHeaders($('#pnlGridEntry table'));
+      var $select = $('#ddlSearch');
+      headers.forEach(h => {
+        $select.append($('<option>', { value: h, text: h }));
+      });
     });
 
 
+
   </script>
+  <style>
+    #pnlGridEntry table {
+      min-width: 1200px;
+      overflow-x: auto;
+    }
+  </style>
 </head>
 
 <body>
 
   <div id="pnlTitle" class="title"></div>
   <div id="pnlListing" class="listing">
+    <div id="pnlDocno">
+      <div class="row">
+        <div class="column" style="display: grid;grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <label for="" class="lblForm">เสนอราคา</label>
+          <input type="text" class="txtForm" style="text-align: right;">
+          <label class="lblForm">วัน</label>
+        </div>
+      </div>
+      <div class="row">
+        <button class="txt-button" style="width: 100px;">Request</button>
+      </div>
+
+    </div>
     <div id="pnlGridEntry">
       <div id="divSearch" class="d-flex align-items-center search">
         <select id="ddlSearch" class="ddlForm" style="width: 200px;">

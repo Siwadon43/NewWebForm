@@ -1,8 +1,19 @@
+html {
+  scrollbar-gutter: stable; /* ใช้ได้ใน Chrome/Edge/Firefox */
+}
+
+/* Fallback สำหรับ Safari */
+@supports not (scrollbar-gutter: stable) {
+  html {
+    overflow-y: scroll; /* กัน layout shift */
+  }
+}
 .row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   /* Default: 8 columns */
   gap: 30px;
+  padding: 5px 0;
 }
 
 
@@ -45,6 +56,14 @@
 
 .w70 {
   width: 70%;
+}
+
+.w80 {
+  width: 80%;
+}
+
+.w90 {
+  width: 90%;
 }
 
 .w100 {
