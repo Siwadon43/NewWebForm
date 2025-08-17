@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.3.1_2</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="Scripts/load-layout.js"></script>
+
+  <script>
+    window.AppConfig = {
+      programName: "หาร้านค้า",
+      programID: ""
+    };
+
+    const headers = [
+      { title: "[]", width: "5%", align: "center", right: "C" },
+      { title: "Product", width: "10%", align: "left" },
+      { title: "Name", width: "20%", align: "left" },
+      { title: "U/M", width: "5%" },
+      { title: "Branch", width: "5%" },
+      { title: "P/R List", width: "25%" },
+      { title: "Vendor List", width: "20%" },
+      { title: "Find Vendor", width: "5%", align: "center" },
+      { title: "📎", width: "5%", align: "center", color: "blue" }
+    ];
+
+    const data = [
+      ["", "P009", "เก้าอี้สำนักงาน", "ตัว", "HO", "25PRHO0715002, 25PRHO0720005, 25PRHO0729005", "V00001,V00009,V00014", "🔍", "1"],
+      ["", "P011", "โต๊ะทำงาน", "ตัว", "HO", "25PRHO0714002, 25PRHO0721005", "V00002", "🔍", "3"],
+      ["", "P009", "เก้าอี้สำนักงาน", "แท่ง", "UD", "25PRUD0713005, 25PRUD07240004, 25PRUD0725004", "V00004,V00005", "🔍", "2"],
+      ["", "P031", "แปรงล้างห้องน้ำ", "ด้าม", "UD", "25PRUD0712055, 25PRUD07250014, 25PRUD0728016", "V00001", "🔍", "1"],
+      ["", "P032", "ไม้ถูกพื้น", "ด้าม", "UD", "25PRUD0712055", "V00001", "🔍", "0"],
+    ];
+
+    $(document).ready(function () {
+      $('#pnlListing').show();
+
+      $(document).on('click', '#btnAddnew', function () {
+        $('#pnlListing').hide();
+        $('#pnlEntry').show();
+      })
+
+      $(document).on('click', '#btnCancel', function () {
+        $('#pnlListing').show();
+        $('#pnlEntry').hide();
+      })
+
+      var headers = getHeaders($('#pnlGridEntry table'));
+      var $select = $('#ddlSearch');
+      headers.forEach(h => {
+        $select.append($('<option>', { value: h, text: h }));
+      });
+    });
+
+
+
+  </script>
+  <style>
+    #pnlGridEntry table {
+      min-width: 1200px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="pnlTitle" class="title"></div>
+  <div id="pnlListing" class="listing">
+    <div id="pnlDocno">
+      <div class="row">
+        <div class="column" style="display: grid;grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <label for="" class="lblForm">เสนอราคา</label>
+          <input type="text" class="txtForm" style="text-align: right;" value="30">
+          <label class="lblForm">วัน</label>
+        </div>
+      </div>
+      <div class="row">
+        <button class="txt-button" style="width: 100px;">Request</button>
+      </div>
+
+    </div>
+    <div id="pnlGridEntry">
+      <div id="divSearch" class="d-flex align-items-center search">
+        <select id="ddlSearch" class="ddlForm" style="width: 200px;">
+          <option value="">คำค้นหา</option>
+        </select>
+        <input type="text" id="cKey" class="txtForm" style="width: 300px;" />
+      </div>
+    </div>
+  </div>
+  <script src="Scripts/script.js"></script>
+  <script>
+    // createTable("pnlGridList", headers, data, ["edit", "delete"]);
+    createTable("pnlGridEntry", headers, data, []);
+  </script>
+</body>
+
+</html>

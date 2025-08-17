@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.3.1_3</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/style_tee.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="Scripts/load-layout.js"></script>
+    <script>
+        window.AppConfig = {
+            programName: "หาร้านค้า",
+            programID: ""
+        };
+
+        // ⭐ แก้ไขการจัดวางข้อมูลใน const headers นี้
+        const headers = [
+            { title: "[]", width: "5%", align: "center", right: "C" },
+            { title: "Vendor Code", width: "5%", align: "left" },
+            { title: "Name", width: "10%", align: "left" },
+            { title: "Contractor", width: "10%", align: "left" },
+            { title: "Phone", width: "5%", align: "left" },
+            { title: "Mail", width: "10%", align: "left" },
+            { title: "From", width: "5%", align: "left" },
+            { title: "Last Action", width: "5%", align: "left" },
+            { title: "Lead Time", width: "5%", align: "right" },
+            { title: "On Due", width: "5%", align: "left" },
+        ];
+
+        // ⭐ ปรับข้อมูลตัวอย่างเพื่อให้สอดคล้องกับ Headers
+        const data = [
+            ["", "V00001", "บริษัทไทยเคหะภัณฑ์ จำกัด", "อนันต์ มหาชัย", "0888878889", "anan@thaitech.com", "Check", "01/08/2025", 7, "Y"],
+            ["", "V00002", "บริษัทซัพพลายพลัส จำกัด", "กมล แสงวิจิต", "0819991111" ,"kamon@hotmail.com", "P/O", "02/08/2025", 3, "Y"],
+            ["", "V00003", "บริษัทอินโฟซิส จำกัด", "สมปอง แสงเย็น", "0856324562","sompong@infosys.co.th", "P/O", "05/08/2025", 5, "N"],
+            ["", "V00004", "บริษัทโปรซีสเต็มส์ จำกัด", "ชลธิชา สมาธิชอบ", "0868882222","cholticha@gmail.com", "Offer", "03/08/2025", 2, "Y"],
+            ["", "V00005", "บริษัทเอ็นจิเนียร์ซัพพลาย จำกัด", "ประเสริฐ แสงจันทร์", "0945623653","prasert@engineer.com", "P/O", "04/08/2025", 6, "N"],
+        ];
+
+
+    </script>
+</head>
+
+<body>
+    <div id="pnlTitle" class="title"></div>
+    <div id="pnlListing" class="listing">
+       <!-- <div class="column" style="display: flex;justify-content: flex-start;">
+    <div style="display: flex; justify-content: flex-start; height: 50px; text-align: left; gap: 10px;">
+        <button id="btnNew" class="txt-button" style="padding: 5px 10px; font-size: 16px;">New</button>
+        <button id="btnSave" class="txt-button" style="padding: 5px 10px; font-size: 16px;">Save</button>
+        <button id="btnBack" class="txt-button" style="padding: 5px 10px; font-size: 16px;">Back</button>
+    </div>
+
+</div> -->
+        <div id="pnlDocno" class="docno">
+            <div class="row">
+                <div class="column">
+                    <label class="lblForm">Product Code</label>
+                    <div class="input-group">
+                        <div class="textbox-container w40">
+                            <input type="text" class="txtKeyForm w100 with-icon">
+                            <img src="../images/search2.png" class="img-icon" alt="search" />
+                        </div>
+                        <input type="text" class="txtForm w60">
+                    </div>
+                </div>
+                <div class="column">
+                    <label class="lblForm alignRight" style="padding-right:10px ;">Qty</label>
+                    <div class="input-group" style="display: flex; align-items: center;">
+                        <input type="text" class="txtForm alignRight">
+                        <span style="margin-left: 8px; color: #666;">U/M</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pnlGridList" class="grid-list">
+            <div id="divSearch" class="d-flex align-items-center search">
+                <select id="ddlSearch" class="ddlForm" style="width: 200px;">
+                    <option value="">คำค้นหา</option>
+                </select>
+                <input type="text" id="cKey" class="txtForm" style="width: 300px;" />
+            </div>
+        </div>
+    </div>
+    <script>
+        createTable("pnlGridList", headers, data);
+        //createTable แก้ไขในช่องไม่ได้
+        //createTableEntry แก้ไขในช่องได้เลย
+    </script>
+</body>
+
+</html>

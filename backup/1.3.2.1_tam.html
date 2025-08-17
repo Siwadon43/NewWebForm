@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.3.2.1</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="Scripts/load-layout.js"></script>
+
+  <script>
+    window.AppConfig = {
+      programName: "Request Price Approved",
+      programID: ""
+    };
+
+    const headers = [
+      { title: "[]", width: "5%", align: "center", right: "C" },
+      { title: "Request Price Date", width: "5%", align: "left" },
+      { title: "By", width: "5%", align: "left" },
+      { title: "CheckPrice #", width: "10%", align: "left" },
+      { title: "Product Code", width: "5%", align: "left" },
+      { title: "Name", width: "15%", align: "left" },
+      { title: "U/M", width: "5%"},
+      { title: "Branch", width: "5%", align: "left" },
+      { title: "P/R List", width: "20%", align: "left" },
+      { title: "Select Vendor List", width: "20%", align: "left" }
+    ];
+
+    const data = [
+      ["", "08/08/2025", "TES", "25CHHO0808001", "P001", "เหล็กแท่ง 3 เมตร", "แท่ง", "HO","25PRHO0715001, 25PRHO0720001, 25PRHO0729003", "V00001"],
+      ["", "08/08/2025", "TES", "25CHHO0808002", "P011", "โต๊ะทำงาน", "ตัว", "HO", "25PRHO0713008, 25PRHO0720009", "V00005,V00006"],
+      ["", "08/08/2025", "SOF", "25CHUD0808001", "P001", "เหล็กแท่ง 3 เมตร", "แท่ง", "UD","25PRUD0712001, 25PRUD0801001", "V00001"],
+      ["", "08/08/2025", "SOF", "25CHUD0808002", "P009", "เก้าอี้สำนักงาน", "แท่ง", "UD", "25PRUD0712015", "V00003"],
+      ["", "08/08/2025", "SOF", "25CHUD0808003", "P0010", "ชั้นวางของ", "ตัว", "UD", "25PRUD0712016", "V00004"],
+
+
+    ];
+
+    $(document).ready(function () {
+      $('#pnlListing').show();
+
+      $(document).on('click', '#btnAddnew', function () {
+        $('#pnlListing').hide();
+        $('#pnlEntry').show();
+      })
+
+      $(document).on('click', '#btnCancel', function () {
+        $('#pnlListing').show();
+        $('#pnlEntry').hide();
+      })
+
+
+    });
+
+
+  </script>
+</head>
+
+<body>
+
+  <div id="pnlTitle" class="title"></div>
+  <div id="pnlListing" class="listing">
+    <div id="pnlDocno" class="docno">
+      <div id="pnlGridEntry">
+        <div id="divSearch" class="d-flex align-items-center search">
+          <select id="ddlSearch" class="ddlForm" style="min-width: 100px;">
+            <option value="">คำค้นหา</option>
+          </select>
+          <input type="text" id="cKey" class="txtForm" style="min-width: 100px;" />
+           <div style="display: flex; justify-content: center; align-items: center; height: 40px; margin-left: 3%;">
+            <p style="white-space: nowrap;">วันหมดอายุ</p>
+          </div>
+           <input type="text" id="กรุณาระบุ" class="txtForm" style="margin-left: 3%; min-width: 100px ; margin-bottom: 0.5%; height: 37px;"  placeholder="ระบุจำนวนวันหมดอายุ" />
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="Scripts/script.js"></script>
+  <script>
+    // createTable("pnlGridList", headers, data, ["edit", "delete"]);
+    createTable("pnlGridEntry", headers, data, []);
+  </script>
+</body>
+
+</html>
