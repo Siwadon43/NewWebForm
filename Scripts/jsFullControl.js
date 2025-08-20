@@ -95,8 +95,7 @@ function createTable(
     th.style.lineHeight = "35px";
     th.style.fontSize = "14px";
     th.style.padding = "0 4px";
-    th.style.wordWrap = "break-word";
-    th.style.whiteSpace = "normal";
+
 
     if (col.title === "[]") {
       const checkbox = document.createElement("input");
@@ -125,6 +124,9 @@ function createTable(
       divHeader.style.justifyContent = "center";
       divHeader.style.gap = "4px";
       divHeader.textContent = col.title;
+      divHeader.style.wordWrap = "break-word";
+      divHeader.style.whiteSpace = "normal";
+      divHeader.style.lineHeight = "1.4";
 
       if (col.key) {
         // จะสร้าง icon sort ต่อเมื่อมี key เท่านั้น
@@ -213,36 +215,34 @@ function createTable(
         td.style.verticalAlign = "top";
 
         const rightType = header.right ?? "";
-        let element;
+        let element; // ประกาศ element ตัวหลักไว้ตรงนี้
 
         if (rightType === "E") {
+          // ---- Input Text: OK ----
           element = document.createElement("input");
           element.id = id;
           element.type = "text";
           element.value = cellValue;
           element.style.width = "100%";
-
           element.dataset.rowIndex = rowIndex;
           element.dataset.key = header.key;
-
           element.addEventListener("change", (event) => {
             const inputField = event.target;
             const rowIndexToUpdate = inputField.dataset.rowIndex;
             const keyToUpdate = inputField.dataset.key;
-            const newValue = inputField.value; 
+            const newValue = inputField.value;
             if (dataToRender[rowIndexToUpdate]) {
               dataToRender[rowIndexToUpdate][keyToUpdate] = newValue;
             }
           });
         } else if (rightType === "C") {
+          // ---- Checkbox: OK ----
           element = document.createElement("input");
           element.id = id;
           element.type = "checkbox";
           element.checked = cellValue === "Y" || cellValue === true;
-
           element.dataset.rowIndex = rowIndex;
           element.dataset.key = header.key;
-
           element.addEventListener("change", (event) => {
             const checkbox = event.target;
             const rowIndexToUpdate = checkbox.dataset.rowIndex;
@@ -252,12 +252,11 @@ function createTable(
               dataToRender[rowIndexToUpdate][keyToUpdate] = isChecked;
             }
           });
-        } else if (rightType === "S") { // Added block for <select> element
+        } else if (rightType === "S") {
+          // ---- Select/Dropdown: OK ----
           element = document.createElement("select");
           element.id = id;
           element.style.width = "100%";
-
-          // Assumes header.options is an array of objects like [{ value: 'val1', text: 'Display 1' }]
           if (header.options && Array.isArray(header.options)) {
             header.options.forEach(opt => {
               const optionElement = document.createElement("option");
@@ -266,12 +265,9 @@ function createTable(
               element.appendChild(optionElement);
             });
           }
-
-          element.value = cellValue; // Set the currently selected value
-
+          element.value = cellValue;
           element.dataset.rowIndex = rowIndex;
           element.dataset.key = header.key;
-
           element.addEventListener("change", (event) => {
             const selectField = event.target;
             const rowIndexToUpdate = selectField.dataset.rowIndex;
@@ -281,31 +277,27 @@ function createTable(
               dataToRender[rowIndexToUpdate][keyToUpdate] = newValue;
             }
           });
-        } else{
+        } else if (rightType === "B") {
+            element = document.createElement("a");
+            element.id = id;
+            element.textContent = cellValue;
+            element.style.width = "100%";
+          element.style.color = "blue";
+          element.style.textDecoration = "underline";
+          element.style.cursor = "pointer";
+        } else {
+          // ---- Label/Plain Text: FIXED ----
           element = document.createElement("label");
           element.id = id;
           element.textContent = cellValue;
           element.style.height = "auto";
           element.style.whiteSpace = "normal";
           element.style.overflowWrap = "break-word";
-
-          element.dataset.rowIndex = rowIndex;
-          element.dataset.key = header.key;
-
-          element.addEventListener("change", (event) => {
-            const labelField = event.target;
-            const rowIndexToUpdate = labelField.dataset.rowIndex;
-            const keyToUpdate = labelField.dataset.key;
-            const newValue = labelField.value;
-            if (dataToRender[rowIndexToUpdate]) {
-              dataToRender[rowIndexToUpdate][keyToUpdate] = newValue;
-            }
-          });
         }
+
         td.appendChild(element);
         tr.appendChild(td);
       });
-
       if (actionButtons.length > 0) {
         const tdActions = document.createElement("td");
         tdActions.style.textAlign = "center";
